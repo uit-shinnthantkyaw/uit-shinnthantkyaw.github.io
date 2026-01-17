@@ -652,6 +652,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const backToTop = new BackToTopButton();
     const quickActions = new QuickActionsBar();
     const themeToggle = new ThemeToggleButton(themeManager);
+    const appNewsletter = new AppNewsletterHandler();
     
     // Only initialize cursor effects on desktop
     if (window.innerWidth > 768 && !('ontouchstart' in window)) {
@@ -860,6 +861,136 @@ function throttle(func, limit) {
         }
     };
 }
+
+// ========================================
+// APP NEWSLETTER HANDLER
+// ========================================
+
+class AppNewsletterHandler {
+    constructor() {
+        this.form = document.getElementById('appNewsletter');
+        this.notifyBtn = document.getElementById('notifyBtn');
+        this.subscribeBtn = document.getElementById('subscribeBtn');
+        this.init();
+    }
+    
+    init() {
+        // Notify Me button - scroll to newsletter
+        if (this.notifyBtn) {
+            this.notifyBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                const newsletterSection = document.querySelector('.app-newsletter');
+                if (newsletterSection) {
+                    newsletterSection.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    newsletterSection.querySelector('input')?.focus();
+                }
+            });
+        }
+        
+        // Newsletter form submission
+        if (this.form) {
+            this.form.addEventListener('submit', (e) => this.handleSubmit(e));
+        }
+        
+        // Subscribe button click
+        if (this.subscribeBtn) {
+            this.subscribeBtn.addEventListener('click', () => {
+                if (this.form) {
+                    this.form.dispatchEvent(new Event('submit'));
+                }
+            });
+        }
+    }
+    
+    handleSubmit(e) {
+        e.preventDefault();
+        const emailInput = this.form.querySelector('input[type="email"]');
+        const email = emailInput?.value.trim();
+        
+        if (!email || !this.isValidEmail(email)) {
+            this.showNotification('Please enter a valid email address', 'error');
+            emailInput?.focus();
+            return;
+        }
+        
+        // Simulate subscription
+        this.showNotification('🚀 Thanks! You\'ll be notified when CosmicBeats launches!', 'success');
+        if (emailInput) emailInput.value = '';
+        
+        // Celebrate with confetti effect
+        this.createConfetti();
+    }
+    
+    isValidEmail(email) {
+        return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+    }
+    
+    showNotification(message, type) {
+        const notification = document.createElement('div');
+        notification.className = `app-notification ${type}`;
+        notification.innerHTML = message;
+        notification.style.cssText = `
+            position: fixed;
+            top: 100px;
+            left: 50%;
+            transform: translateX(-50%);
+            padding: 15px 30px;
+            background: ${type === 'success' ? 'rgba(0, 255, 136, 0.9)' : 'rgba(255, 77, 77, 0.9)'};
+            color: ${type === 'success' ? '#000' : '#fff'};
+            border-radius: 10px;
+            font-family: 'Space Mono', monospace;
+            font-size: 0.9rem;
+            z-index: 10000;
+            animation: slideDown 0.4s ease forwards;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+        `;
+        
+        document.body.appendChild(notification);
+        setTimeout(() => {
+            notification.style.animation = 'slideUp 0.4s ease forwards';
+            setTimeout(() => notification.remove(), 400);
+        }, 3000);
+    }
+    
+    createConfetti() {
+        const colors = ['#00ff88', '#ff00ff', '#00d4ff', '#ffdd00'];
+        for (let i = 0; i < 50; i++) {
+            const confetti = document.createElement('div');
+            confetti.style.cssText = `
+                position: fixed;
+                width: ${Math.random() * 10 + 5}px;
+                height: ${Math.random() * 10 + 5}px;
+                background: ${colors[Math.floor(Math.random() * colors.length)]};
+                left: ${Math.random() * 100}vw;
+                top: -20px;
+                border-radius: ${Math.random() > 0.5 ? '50%' : '0'};
+                z-index: 9999;
+                pointer-events: none;
+                animation: confettiFall ${Math.random() * 2 + 2}s ease-out forwards;
+            `;
+            document.body.appendChild(confetti);
+            setTimeout(() => confetti.remove(), 4000);
+        }
+    }
+}
+
+// Add confetti animation
+const confettiStyle = document.createElement('style');
+confettiStyle.textContent = `
+    @keyframes confettiFall {
+        0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+        100% { transform: translateY(100vh) rotate(720deg); opacity: 0; }
+    }
+    @keyframes slideDown {
+        from { transform: translate(-50%, -100%); opacity: 0; }
+        to { transform: translate(-50%, 0); opacity: 1; }
+    }
+    @keyframes slideUp {
+        from { transform: translate(-50%, 0); opacity: 1; }
+        to { transform: translate(-50%, -100%); opacity: 0; }
+    }
+`;
+document.head.appendChild(confettiStyle);
 
 // Export utilities
 window.UIUtils = { debounce, throttle };
