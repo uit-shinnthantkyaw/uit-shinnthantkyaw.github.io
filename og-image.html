@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            width: 1200px;
+            height: 630px;
+            background: linear-gradient(135deg, #0a0a1a 0%, #1a1a3a 50%, #0a0a2a 100%);
+            font-family: 'Segoe UI', Arial, sans-serif;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .stars {
+            position: absolute;
+            inset: 0;
+            background-image: 
+                radial-gradient(2px 2px at 100px 50px, #00ff88, transparent),
+                radial-gradient(2px 2px at 200px 150px, #ff00ff, transparent),
+                radial-gradient(1px 1px at 300px 100px, #00d4ff, transparent),
+                radial-gradient(2px 2px at 400px 200px, #00ff88, transparent),
+                radial-gradient(1px 1px at 500px 80px, #ff00ff, transparent),
+                radial-gradient(2px 2px at 600px 300px, #00d4ff, transparent),
+                radial-gradient(1px 1px at 700px 120px, #00ff88, transparent),
+                radial-gradient(2px 2px at 800px 250px, #ff00ff, transparent),
+                radial-gradient(1px 1px at 900px 180px, #00d4ff, transparent),
+                radial-gradient(2px 2px at 1000px 350px, #00ff88, transparent),
+                radial-gradient(1px 1px at 1100px 100px, #ff00ff, transparent),
+                radial-gradient(2px 2px at 150px 400px, #00d4ff, transparent),
+                radial-gradient(1px 1px at 350px 500px, #00ff88, transparent),
+                radial-gradient(2px 2px at 550px 450px, #ff00ff, transparent),
+                radial-gradient(1px 1px at 750px 520px, #00d4ff, transparent),
+                radial-gradient(2px 2px at 950px 480px, #00ff88, transparent);
+        }
+        .content {
+            text-align: center;
+            z-index: 10;
+        }
+        .alien {
+            font-size: 120px;
+            margin-bottom: 20px;
+            filter: drop-shadow(0 0 30px rgba(0, 255, 136, 0.5));
+        }
+        .name {
+            font-size: 72px;
+            font-weight: 900;
+            background: linear-gradient(135deg, #00ff88, #00d4ff, #ff00ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 15px;
+            letter-spacing: 2px;
+        }
+        .tagline {
+            font-size: 28px;
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 25px;
+        }
+        .tags {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+        }
+        .tag {
+            padding: 10px 25px;
+            background: rgba(0, 255, 136, 0.15);
+            border: 2px solid #00ff88;
+            border-radius: 30px;
+            color: #00ff88;
+            font-size: 18px;
+            font-weight: 600;
+        }
+        .tag:nth-child(2) {
+            border-color: #ff00ff;
+            color: #ff00ff;
+            background: rgba(255, 0, 255, 0.15);
+        }
+        .tag:nth-child(3) {
+            border-color: #00d4ff;
+            color: #00d4ff;
+            background: rgba(0, 212, 255, 0.15);
+        }
+        .location {
+            position: absolute;
+            bottom: 40px;
+            right: 50px;
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 20px;
+        }
+        .domain {
+            position: absolute;
+            bottom: 40px;
+            left: 50px;
+            color: #00ff88;
+            font-size: 22px;
+            font-weight: 600;
+        }
+        .glow-circle {
+            position: absolute;
+            width: 400px;
+            height: 400px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(0, 255, 136, 0.1) 0%, transparent 70%);
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+    </style>
+</head>
+<body>
+    <div class="stars"></div>
+    <div class="glow-circle"></div>
+    <div class="content">
+        <div class="alien">👽</div>
+        <div class="name">THOMAS TIN TIN</div>
+        <div class="tagline">Tech Entrepreneur & Creative Artist</div>
+        <div class="tags">
+            <span class="tag">💻 Code</span>
+            <span class="tag">🎵 Music</span>
+            <span class="tag">🎨 Art</span>
+        </div>
+    </div>
+    <div class="location">📍 Hinthada, Myanmar</div>
+    <div class="domain">thomastintin.me</div>
+</body>
+</html>
