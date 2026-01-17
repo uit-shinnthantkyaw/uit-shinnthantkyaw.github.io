@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thomas Tin Tin | Tech Entrepreneur & Creative Artist</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Alien Background Canvas -->
+    <canvas id="alienCanvas"></canvas>
+    
+    <!-- Floating Particles -->
+    <div id="particles"></div>
+    
+    <!-- Navigation -->
+    <nav class="nav-alien">
+        <div class="nav-logo">
+            <span class="glow-text">👽 TT</span>
+        </div>
+        <button class="nav-toggle" id="navToggle">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+        <ul class="nav-links" id="navLinks">
+            <li><a href="#home" class="nav-link active">Home</a></li>
+            <li><a href="#about" class="nav-link">About</a></li>
+            <li><a href="#skills" class="nav-link">Skills</a></li>
+            <li><a href="#projects" class="nav-link">Projects</a></li>
+            <li><a href="#music" class="nav-link">Music</a></li>
+            <li><a href="#contact" class="nav-link">Contact</a></li>
+        </ul>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="alien-character" id="alienCharacter">
+            <div class="alien-body">
+                <div class="alien-head">
+                    <div class="alien-eye left"></div>
+                    <div class="alien-eye right"></div>
+                    <div class="alien-antenna left"></div>
+                    <div class="alien-antenna right"></div>
+                </div>
+                <div class="alien-torso"></div>
+                <div class="alien-arm left"></div>
+                <div class="alien-arm right"></div>
+            </div>
+        </div>
+        
+        <div class="hero-content">
+            <div class="glitch-wrapper">
+                <h1 class="glitch" data-text="THOMAS TIN TIN">THOMAS TIN TIN</h1>
+            </div>
+            <p class="hero-subtitle typewriter">
+                <span id="typewriterText"></span>
+                <span class="cursor">|</span>
+            </p>
+            <div class="hero-tags">
+                <span class="tag">🚀 Tech Entrepreneur</span>
+                <span class="tag">🎵 Music Creator</span>
+                <span class="tag">🎨 Digital Artist</span>
+                <span class="tag">💫 Social Innovator</span>
+            </div>
+            <div class="hero-cta">
+                <a href="#projects" class="btn btn-primary">Explore My Universe</a>
+                <a href="#contact" class="btn btn-secondary">Make Contact</a>
+            </div>
+        </div>
+        
+        <div class="scroll-indicator">
+            <div class="mouse">
+                <div class="wheel"></div>
+            </div>
+            <span>Scroll to explore</span>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="section about">
+        <div class="container">
+            <h2 class="section-title">
+                <span class="alien-icon">👾</span>
+                About The Explorer
+            </h2>
+            <div class="about-grid">
+                <div class="about-image">
+                    <div class="image-frame">
+                        <div class="hologram-effect"></div>
+                        <div class="avatar-placeholder">
+                            <span>🧑‍🚀</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="about-content">
+                    <div class="artistic-note" data-note="Personal Log #001">
+                        <p>Greetings, Earth dwellers! I'm <strong>Thomas Tin Tin</strong>, a rising tech entrepreneur navigating the cosmic intersection of technology, music, and art.</p>
+                    </div>
+                    <div class="artistic-note" data-note="Mission Statement">
+                        <p>My journey spans across multiple galaxies of creativity – from crafting code that powers innovative solutions to composing melodies that resonate with the soul, and creating visual art that transcends dimensions.</p>
+                    </div>
+                    <div class="artistic-note" data-note="Current Coordinates">
+                        <p>Currently exploring the realms of web development, digital entrepreneurship, and social impact while maintaining my creative core through music and artistic expression.</p>
+                    </div>
+                    <div class="stats-grid">
+                        <div class="stat-item">
+                            <span class="stat-number" data-count="50">0</span>+
+                            <span class="stat-label">Projects</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number" data-count="100">0</span>+
+                            <span class="stat-label">Music Tracks</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number" data-count="1000">0</span>+
+                            <span class="stat-label">Lines of Code</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="section skills">
+        <div class="container">
+            <h2 class="section-title">
+                <span class="alien-icon">🛸</span>
+                Skill Constellation
+            </h2>
+            <div class="skills-universe">
+                <div class="skill-category">
+                    <h3 class="category-title">💻 Tech & Development</h3>
+                    <div class="skill-planets">
+                        <div class="skill-planet" data-skill="90">
+                            <span class="planet-icon">⚛️</span>
+                            <span class="planet-name">JavaScript</span>
+                            <div class="orbit"></div>
+                        </div>
+                        <div class="skill-planet" data-skill="85">
+                            <span class="planet-icon">🎨</span>
+                            <span class="planet-name">CSS/HTML</span>
+                            <div class="orbit"></div>
+                        </div>
+                        <div class="skill-planet" data-skill="80">
+                            <span class="planet-icon">🐍</span>
+                            <span class="planet-name">Python</span>
+                            <div class="orbit"></div>
+                        </div>
+                        <div class="skill-planet" data-skill="75">
+                            <span class="planet-icon">📱</span>
+                            <span class="planet-name">React</span>
+                            <div class="orbit"></div>
+                        </div>
+                        <div class="skill-planet" data-skill="70">
+                            <span class="planet-icon">🗄️</span>
+                            <span class="planet-name">Node.js</span>
+                            <div class="orbit"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <h3 class="category-title">🎵 Music & Audio</h3>
+                    <div class="skill-planets">
+                        <div class="skill-planet" data-skill="95">
+                            <span class="planet-icon">🎹</span>
+                            <span class="planet-name">Music Production</span>
+                            <div class="orbit"></div>
+                        </div>
+                        <div class="skill-planet" data-skill="88">
+                            <span class="planet-icon">🎸</span>
+                            <span class="planet-name">Instruments</span>
+                            <div class="orbit"></div>
+                        </div>
+                        <div class="skill-planet" data-skill="82">
+                            <span class="planet-icon">🎤</span>
+                            <span class="planet-name">Sound Design</span>
+                            <div class="orbit"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <h3 class="category-title">🎨 Art & Design</h3>
+                    <div class="skill-planets">
+                        <div class="skill-planet" data-skill="85">
+                            <span class="planet-icon">✏️</span>
+                            <span class="planet-name">Digital Art</span>
+                            <div class="orbit"></div>
+                        </div>
+                        <div class="skill-planet" data-skill="80">
+                            <span class="planet-icon">📐</span>
+                            <span class="planet-name">UI/UX Design</span>
+                            <div class="orbit"></div>
+                        </div>
+                        <div class="skill-planet" data-skill="78">
+                            <span class="planet-icon">🎬</span>
+                            <span class="planet-name">Video Editing</span>
+                            <div class="orbit"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="section projects">
+        <div class="container">
+            <h2 class="section-title">
+                <span class="alien-icon">🌌</span>
+                Project Galaxy
+            </h2>
+            <div class="project-filters">
+                <button class="filter-btn active" data-filter="all">All</button>
+                <button class="filter-btn" data-filter="tech">Tech</button>
+                <button class="filter-btn" data-filter="music">Music</button>
+                <button class="filter-btn" data-filter="art">Art</button>
+            </div>
+            <div class="projects-grid">
+                <div class="project-card" data-category="tech">
+                    <div class="project-hologram"></div>
+                    <div class="project-content">
+                        <div class="project-icon">🤖</div>
+                        <h3>AI Assistant App</h3>
+                        <p>An intelligent assistant powered by machine learning to help with daily tasks.</p>
+                        <div class="project-tags">
+                            <span>Python</span>
+                            <span>TensorFlow</span>
+                            <span>React</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="#" class="project-link">View Project</a>
+                            <a href="#" class="project-link">GitHub</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="project-card" data-category="music">
+                    <div class="project-hologram"></div>
+                    <div class="project-content">
+                        <div class="project-icon">🎵</div>
+                        <h3>Cosmic Beats EP</h3>
+                        <p>A collection of electronic music inspired by space exploration and alien encounters.</p>
+                        <div class="project-tags">
+                            <span>Electronic</span>
+                            <span>Ambient</span>
+                            <span>Synth</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="#" class="project-link">Listen Now</a>
+                            <a href="#" class="project-link">Spotify</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="project-card" data-category="art">
+                    <div class="project-hologram"></div>
+                    <div class="project-content">
+                        <div class="project-icon">🎨</div>
+                        <h3>Nebula Art Series</h3>
+                        <p>Digital art collection exploring the beauty of cosmic phenomena and alien worlds.</p>
+                        <div class="project-tags">
+                            <span>Digital Art</span>
+                            <span>NFT</span>
+                            <span>Generative</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="#" class="project-link">Gallery</a>
+                            <a href="#" class="project-link">OpenSea</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="project-card" data-category="tech">
+                    <div class="project-hologram"></div>
+                    <div class="project-content">
+                        <div class="project-icon">🌐</div>
+                        <h3>Social Impact Platform</h3>
+                        <p>A web platform connecting volunteers with community service opportunities.</p>
+                        <div class="project-tags">
+                            <span>Node.js</span>
+                            <span>MongoDB</span>
+                            <span>Vue.js</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="#" class="project-link">Visit Site</a>
+                            <a href="#" class="project-link">GitHub</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="project-card" data-category="music">
+                    <div class="project-hologram"></div>
+                    <div class="project-content">
+                        <div class="project-icon">🎹</div>
+                        <h3>Alien Soundscapes</h3>
+                        <p>Experimental ambient music designed for meditation and deep focus sessions.</p>
+                        <div class="project-tags">
+                            <span>Ambient</span>
+                            <span>Experimental</span>
+                            <span>Meditation</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="#" class="project-link">Listen</a>
+                            <a href="#" class="project-link">YouTube</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="project-card" data-category="art">
+                    <div class="project-hologram"></div>
+                    <div class="project-content">
+                        <div class="project-icon">👾</div>
+                        <h3>Pixel Universe</h3>
+                        <p>Retro-style pixel art animations featuring alien characters and space scenes.</p>
+                        <div class="project-tags">
+                            <span>Pixel Art</span>
+                            <span>Animation</span>
+                            <span>Retro</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="#" class="project-link">View</a>
+                            <a href="#" class="project-link">Instagram</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Music Section -->
+    <section id="music" class="section music">
+        <div class="container">
+            <h2 class="section-title">
+                <span class="alien-icon">🎧</span>
+                Sound Transmissions
+            </h2>
+            <div class="music-player">
+                <div class="visualizer" id="visualizer">
+                    <div class="bar"></div>
+                    <div class="bar"></div>
+                    <div class="bar"></div>
+                    <div class="bar"></div>
+                    <div class="bar"></div>
+                    <div class="bar"></div>
+                    <div class="bar"></div>
+                    <div class="bar"></div>
+                    <div class="bar"></div>
+                    <div class="bar"></div>
+                    <div class="bar"></div>
+                    <div class="bar"></div>
+                </div>
+                <div class="player-controls">
+                    <button class="control-btn" id="prevBtn">⏮️</button>
+                    <button class="control-btn play-btn" id="playBtn">▶️</button>
+                    <button class="control-btn" id="nextBtn">⏭️</button>
+                </div>
+                <div class="now-playing">
+                    <span class="track-title">Cosmic Journey - Track 01</span>
+                    <div class="progress-bar">
+                        <div class="progress"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="music-grid">
+                <div class="music-card">
+                    <div class="album-art">🌌</div>
+                    <h4>Cosmic Journey</h4>
+                    <p>Space Ambient</p>
+                </div>
+                <div class="music-card">
+                    <div class="album-art">🛸</div>
+                    <h4>UFO Nights</h4>
+                    <p>Electronic</p>
+                </div>
+                <div class="music-card">
+                    <div class="album-art">🌙</div>
+                    <h4>Lunar Dreams</h4>
+                    <p>Lo-Fi</p>
+                </div>
+                <div class="music-card">
+                    <div class="album-art">⭐</div>
+                    <h4>Stardust</h4>
+                    <p>Synthwave</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="section contact">
+        <div class="container">
+            <h2 class="section-title">
+                <span class="alien-icon">📡</span>
+                Send Transmission
+            </h2>
+            <div class="contact-grid">
+                <div class="contact-info">
+                    <div class="artistic-note" data-note="Frequency Open">
+                        <p>Ready to collaborate on something cosmic? Whether it's a tech project, music collaboration, or creative endeavor, I'm always excited to connect with fellow explorers!</p>
+                    </div>
+                    <div class="contact-links">
+                        <a href="mailto:thomas@example.com" class="contact-link">
+                            <span class="link-icon">📧</span>
+                            <span>thomas@example.com</span>
+                        </a>
+                        <a href="#" class="contact-link">
+                            <span class="link-icon">🐦</span>
+                            <span>@thomastintin</span>
+                        </a>
+                        <a href="#" class="contact-link">
+                            <span class="link-icon">💼</span>
+                            <span>LinkedIn</span>
+                        </a>
+                        <a href="#" class="contact-link">
+                            <span class="link-icon">🐙</span>
+                            <span>GitHub</span>
+                        </a>
+                    </div>
+                </div>
+                <form class="contact-form" id="contactForm">
+                    <div class="form-group">
+                        <label for="name">Your Name</label>
+                        <input type="text" id="name" name="name" placeholder="Enter your Earth name..." required>
+                        <div class="input-glow"></div>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email Frequency</label>
+                        <input type="email" id="email" name="email" placeholder="your@email.com" required>
+                        <div class="input-glow"></div>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Your Message</label>
+                        <textarea id="message" name="message" rows="5" placeholder="Transmit your message..." required></textarea>
+                        <div class="input-glow"></div>
+                    </div>
+                    <button type="submit" class="btn btn-primary submit-btn">
+                        <span>Send Transmission</span>
+                        <span class="btn-rocket">🚀</span>
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <span class="glow-text">👽 Thomas Tin Tin</span>
+                </div>
+                <p class="footer-tagline">Exploring the universe, one project at a time.</p>
+                <div class="social-links">
+                    <a href="#" class="social-link">🐦</a>
+                    <a href="#" class="social-link">📸</a>
+                    <a href="#" class="social-link">🎵</a>
+                    <a href="#" class="social-link">💼</a>
+                    <a href="#" class="social-link">🐙</a>
+                </div>
+                <p class="copyright">© 2026 Thomas Tin Tin. All rights reserved across all galaxies.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="js/animations.js"></script>
+    <script src="js/character.js"></script>
+    <script src="js/ui.js"></script>
+</body>
+</html>

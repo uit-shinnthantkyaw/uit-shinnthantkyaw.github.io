@@ -1,0 +1,650 @@
+/**
+ * UI.JS
+ * Thomas Tin Tin Portfolio - UI Components & Interactions
+ * Handles navigation, forms, filters, and general UI functionality
+ */
+
+// ========================================
+// NAVIGATION CONTROLLER
+// ========================================
+
+class NavigationController {
+    constructor() {
+        this.nav = document.querySelector('.nav-alien');
+        this.navToggle = document.getElementById('navToggle');
+        this.navLinks = document.getElementById('navLinks');
+        this.links = document.querySelectorAll('.nav-link');
+        this.sections = document.querySelectorAll('.section');
+        
+        this.init();
+    }
+    
+    init() {
+        this.setupMobileMenu();
+        this.setupScrollSpy();
+        this.setupSmoothScroll();
+        this.setupNavBackground();
+    }
+    
+    setupMobileMenu() {
+        this.navToggle.addEventListener('click', () => {
+            this.navToggle.classList.toggle('active');
+            this.navLinks.classList.toggle('active');
+            document.body.style.overflow = this.navLinks.classList.contains('active') ? 'hidden' : '';
+        });
+        
+        // Close menu when clicking a link
+        this.links.forEach(link => {
+            link.addEventListener('click', () => {
+                this.navToggle.classList.remove('active');
+                this.navLinks.classList.remove('active');
+                document.body.style.overflow = '';
+            });
+        });
+        
+        // Close menu when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!this.nav.contains(e.target) && this.navLinks.classList.contains('active')) {
+                this.navToggle.classList.remove('active');
+                this.navLinks.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+        });
+    }
+    
+    setupScrollSpy() {
+        const observerOptions = {
+            threshold: 0.3,
+            rootMargin: '-100px 0px -100px 0px'
+        };
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    this.setActiveLink(entry.target.id);
+                }
+            });
+        }, observerOptions);
+        
+        this.sections.forEach(section => observer.observe(section));
+        
+        // Also observe hero section
+        const hero = document.querySelector('.hero');
+        if (hero) observer.observe(hero);
+    }
+    
+    setActiveLink(sectionId) {
+        this.links.forEach(link => {
+            link.classList.remove('active');
+            if (link.getAttribute('href') === `#${sectionId}`) {
+                link.classList.add('active');
+            }
+        });
+    }
+    
+    setupSmoothScroll() {
+        this.links.forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                const targetId = link.getAttribute('href');
+                const target = document.querySelector(targetId);
+                
+                if (target) {
+                    const headerOffset = 80;
+                    const elementPosition = target.getBoundingClientRect().top;
+                    const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+                    
+                    window.scrollTo({
+                        top: offsetPosition,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    }
+    
+    setupNavBackground() {
+        let lastScroll = 0;
+        
+        window.addEventListener('scroll', () => {
+            const currentScroll = window.pageYOffset;
+            
+            // Add/remove background opacity based on scroll
+            if (currentScroll > 50) {
+                this.nav.style.background = 'rgba(10, 10, 26, 0.98)';
+                this.nav.style.boxShadow = '0 2px 20px rgba(0, 255, 136, 0.1)';
+            } else {
+                this.nav.style.background = 'rgba(10, 10, 26, 0.9)';
+                this.nav.style.boxShadow = 'none';
+            }
+            
+            // Hide/show nav based on scroll direction
+            if (currentScroll > lastScroll && currentScroll > 200) {
+                this.nav.style.transform = 'translateY(-100%)';
+            } else {
+                this.nav.style.transform = 'translateY(0)';
+            }
+            
+            lastScroll = currentScroll;
+        });
+    }
+}
+
+// ========================================
+// PROJECT FILTER
+// ========================================
+
+class ProjectFilter {
+    constructor() {
+        this.filterButtons = document.querySelectorAll('.filter-btn');
+        this.projectCards = document.querySelectorAll('.project-card');
+        
+        this.init();
+    }
+    
+    init() {
+        this.filterButtons.forEach(btn => {
+            btn.addEventListener('click', () => this.filter(btn));
+        });
+    }
+    
+    filter(activeBtn) {
+        const filter = activeBtn.getAttribute('data-filter');
+        
+        // Update active button
+        this.filterButtons.forEach(btn => btn.classList.remove('active'));
+        activeBtn.classList.add('active');
+        
+        // Filter cards with animation
+        this.projectCards.forEach((card, index) => {
+            const category = card.getAttribute('data-category');
+            
+            if (filter === 'all' || category === filter) {
+                card.style.animation = `fadeInUp 0.5s ease ${index * 0.1}s forwards`;
+                card.style.display = 'block';
+            } else {
+                card.style.animation = 'fadeOut 0.3s ease forwards';
+                setTimeout(() => {
+                    card.style.display = 'none';
+                }, 300);
+            }
+        });
+    }
+}
+
+// ========================================
+// MUSIC PLAYER UI
+// ========================================
+
+class MusicPlayerUI {
+    constructor() {
+        this.playBtn = document.getElementById('playBtn');
+        this.prevBtn = document.getElementById('prevBtn');
+        this.nextBtn = document.getElementById('nextBtn');
+        this.visualizer = document.getElementById('visualizer');
+        this.bars = this.visualizer.querySelectorAll('.bar');
+        this.musicCards = document.querySelectorAll('.music-card');
+        
+        this.isPlaying = false;
+        this.currentTrack = 0;
+        this.tracks = ['Cosmic Journey', 'UFO Nights', 'Lunar Dreams', 'Stardust'];
+        
+        this.init();
+    }
+    
+    init() {
+        this.playBtn.addEventListener('click', () => this.togglePlay());
+        this.prevBtn.addEventListener('click', () => this.prevTrack());
+        this.nextBtn.addEventListener('click', () => this.nextTrack());
+        
+        this.musicCards.forEach((card, index) => {
+            card.addEventListener('click', () => this.selectTrack(index));
+        });
+    }
+    
+    togglePlay() {
+        this.isPlaying = !this.isPlaying;
+        this.playBtn.textContent = this.isPlaying ? '⏸️' : '▶️';
+        
+        if (this.isPlaying) {
+            this.startVisualizer();
+        } else {
+            this.stopVisualizer();
+        }
+    }
+    
+    startVisualizer() {
+        this.bars.forEach(bar => {
+            bar.style.animationPlayState = 'running';
+        });
+    }
+    
+    stopVisualizer() {
+        this.bars.forEach(bar => {
+            bar.style.animationPlayState = 'paused';
+        });
+    }
+    
+    prevTrack() {
+        this.currentTrack = (this.currentTrack - 1 + this.tracks.length) % this.tracks.length;
+        this.updateTrackDisplay();
+    }
+    
+    nextTrack() {
+        this.currentTrack = (this.currentTrack + 1) % this.tracks.length;
+        this.updateTrackDisplay();
+    }
+    
+    selectTrack(index) {
+        this.currentTrack = index;
+        this.updateTrackDisplay();
+        
+        if (!this.isPlaying) {
+            this.togglePlay();
+        }
+        
+        // Highlight selected card
+        this.musicCards.forEach((card, i) => {
+            card.style.border = i === index ? '2px solid var(--primary-color)' : '';
+            card.style.transform = i === index ? 'scale(1.05)' : '';
+        });
+    }
+    
+    updateTrackDisplay() {
+        const trackTitle = document.querySelector('.track-title');
+        trackTitle.textContent = `${this.tracks[this.currentTrack]} - Track 0${this.currentTrack + 1}`;
+    }
+}
+
+// ========================================
+// CONTACT FORM HANDLER
+// ========================================
+
+class ContactFormHandler {
+    constructor() {
+        this.form = document.getElementById('contactForm');
+        this.submitBtn = this.form.querySelector('.submit-btn');
+        
+        this.init();
+    }
+    
+    init() {
+        this.form.addEventListener('submit', (e) => this.handleSubmit(e));
+        
+        // Add input animations
+        const inputs = this.form.querySelectorAll('input, textarea');
+        inputs.forEach(input => {
+            input.addEventListener('focus', () => this.onInputFocus(input));
+            input.addEventListener('blur', () => this.onInputBlur(input));
+        });
+    }
+    
+    onInputFocus(input) {
+        input.parentElement.classList.add('focused');
+    }
+    
+    onInputBlur(input) {
+        if (!input.value) {
+            input.parentElement.classList.remove('focused');
+        }
+    }
+    
+    async handleSubmit(e) {
+        e.preventDefault();
+        
+        // Animate button
+        this.submitBtn.innerHTML = '<span>Transmitting...</span> 📡';
+        this.submitBtn.disabled = true;
+        
+        // Simulate form submission
+        await this.simulateSubmission();
+        
+        // Show success
+        this.showSuccess();
+        
+        // Reset form
+        setTimeout(() => {
+            this.form.reset();
+            this.submitBtn.innerHTML = '<span>Send Transmission</span> <span class="btn-rocket">🚀</span>';
+            this.submitBtn.disabled = false;
+        }, 3000);
+    }
+    
+    simulateSubmission() {
+        return new Promise(resolve => setTimeout(resolve, 2000));
+    }
+    
+    showSuccess() {
+        this.submitBtn.innerHTML = '<span>Transmission Sent!</span> ✅';
+        this.submitBtn.style.background = 'linear-gradient(135deg, #22c55e, #16a34a)';
+        
+        // Create success particles
+        this.createSuccessParticles();
+        
+        // Show notification
+        this.showNotification('Message sent successfully! 🚀');
+        
+        setTimeout(() => {
+            this.submitBtn.style.background = '';
+        }, 3000);
+    }
+    
+    createSuccessParticles() {
+        const rect = this.submitBtn.getBoundingClientRect();
+        
+        for (let i = 0; i < 20; i++) {
+            const particle = document.createElement('div');
+            particle.innerHTML = ['✨', '🌟', '💫', '⭐'][Math.floor(Math.random() * 4)];
+            particle.style.cssText = `
+                position: fixed;
+                left: ${rect.left + rect.width / 2}px;
+                top: ${rect.top}px;
+                font-size: ${Math.random() * 10 + 15}px;
+                pointer-events: none;
+                z-index: 9999;
+                animation: successParticle 1s ease-out forwards;
+                --tx: ${(Math.random() - 0.5) * 200}px;
+                --ty: ${-Math.random() * 150 - 50}px;
+            `;
+            
+            document.body.appendChild(particle);
+            setTimeout(() => particle.remove(), 1000);
+        }
+    }
+    
+    showNotification(message) {
+        const notification = document.createElement('div');
+        notification.className = 'notification';
+        notification.textContent = message;
+        notification.style.cssText = `
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            padding: 15px 25px;
+            background: linear-gradient(135deg, var(--primary-color), #00cc6a);
+            color: var(--bg-dark);
+            border-radius: 10px;
+            font-weight: bold;
+            font-family: 'Space Mono', monospace;
+            z-index: 10000;
+            animation: slideInRight 0.5s ease forwards;
+            box-shadow: 0 5px 20px rgba(0, 255, 136, 0.3);
+        `;
+        
+        document.body.appendChild(notification);
+        
+        setTimeout(() => {
+            notification.style.animation = 'slideOutRight 0.5s ease forwards';
+            setTimeout(() => notification.remove(), 500);
+        }, 3000);
+    }
+}
+
+// ========================================
+// CURSOR EFFECTS
+// ========================================
+
+class CursorEffects {
+    constructor() {
+        this.cursor = this.createCursor();
+        this.cursorTrail = [];
+        this.trailLength = 10;
+        
+        this.init();
+    }
+    
+    createCursor() {
+        const cursor = document.createElement('div');
+        cursor.className = 'custom-cursor';
+        cursor.style.cssText = `
+            position: fixed;
+            width: 20px;
+            height: 20px;
+            border: 2px solid var(--primary-color);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 99999;
+            transition: transform 0.1s ease, width 0.2s ease, height 0.2s ease;
+            mix-blend-mode: difference;
+        `;
+        document.body.appendChild(cursor);
+        return cursor;
+    }
+    
+    init() {
+        document.addEventListener('mousemove', (e) => this.moveCursor(e));
+        
+        // Hover effects on interactive elements
+        const interactiveElements = document.querySelectorAll('a, button, .project-card, .music-card');
+        interactiveElements.forEach(el => {
+            el.addEventListener('mouseenter', () => this.expandCursor());
+            el.addEventListener('mouseleave', () => this.shrinkCursor());
+        });
+    }
+    
+    moveCursor(e) {
+        this.cursor.style.left = e.clientX - 10 + 'px';
+        this.cursor.style.top = e.clientY - 10 + 'px';
+    }
+    
+    expandCursor() {
+        this.cursor.style.transform = 'scale(2)';
+        this.cursor.style.background = 'rgba(0, 255, 136, 0.1)';
+    }
+    
+    shrinkCursor() {
+        this.cursor.style.transform = 'scale(1)';
+        this.cursor.style.background = 'transparent';
+    }
+}
+
+// ========================================
+// LAZY LOADING
+// ========================================
+
+class LazyLoader {
+    constructor() {
+        this.images = document.querySelectorAll('img[data-src]');
+        this.init();
+    }
+    
+    init() {
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    this.loadImage(entry.target);
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { rootMargin: '50px' });
+        
+        this.images.forEach(img => observer.observe(img));
+    }
+    
+    loadImage(img) {
+        img.src = img.getAttribute('data-src');
+        img.classList.add('loaded');
+    }
+}
+
+// ========================================
+// THEME MANAGER (For future dark/light mode)
+// ========================================
+
+class ThemeManager {
+    constructor() {
+        this.currentTheme = 'alien';
+        this.themes = {
+            alien: {
+                primary: '#00ff88',
+                secondary: '#ff00ff',
+                accent: '#00ffff',
+                bgDark: '#0a0a1a'
+            },
+            cosmic: {
+                primary: '#8b5cf6',
+                secondary: '#ec4899',
+                accent: '#06b6d4',
+                bgDark: '#0f0f23'
+            },
+            matrix: {
+                primary: '#00ff00',
+                secondary: '#00cc00',
+                accent: '#00ff88',
+                bgDark: '#000000'
+            }
+        };
+    }
+    
+    setTheme(themeName) {
+        if (!this.themes[themeName]) return;
+        
+        const theme = this.themes[themeName];
+        const root = document.documentElement;
+        
+        root.style.setProperty('--primary-color', theme.primary);
+        root.style.setProperty('--secondary-color', theme.secondary);
+        root.style.setProperty('--accent-color', theme.accent);
+        root.style.setProperty('--bg-dark', theme.bgDark);
+        
+        this.currentTheme = themeName;
+    }
+}
+
+// ========================================
+// ADD UI ANIMATIONS CSS
+// ========================================
+
+const uiStyles = document.createElement('style');
+uiStyles.textContent = `
+    @keyframes fadeOut {
+        from { opacity: 1; transform: scale(1); }
+        to { opacity: 0; transform: scale(0.8); }
+    }
+    
+    @keyframes fadeInUp {
+        from { opacity: 0; transform: translateY(30px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+    
+    @keyframes successParticle {
+        0% {
+            transform: translate(0, 0) scale(1);
+            opacity: 1;
+        }
+        100% {
+            transform: translate(var(--tx), var(--ty)) scale(0);
+            opacity: 0;
+        }
+    }
+    
+    @keyframes slideInRight {
+        from { transform: translateX(100%); opacity: 0; }
+        to { transform: translateX(0); opacity: 1; }
+    }
+    
+    @keyframes slideOutRight {
+        from { transform: translateX(0); opacity: 1; }
+        to { transform: translateX(100%); opacity: 0; }
+    }
+    
+    .nav-alien {
+        transition: background 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    
+    .form-group.focused label {
+        color: var(--primary-color);
+    }
+    
+    img.loaded {
+        animation: fadeIn 0.5s ease;
+    }
+    
+    @keyframes fadeIn {
+        from { opacity: 0; }
+        to { opacity: 1; }
+    }
+    
+    /* Hide default cursor on desktop */
+    @media (min-width: 769px) {
+        body {
+            cursor: none;
+        }
+        
+        a, button {
+            cursor: none;
+        }
+    }
+    
+    /* Show default cursor on mobile */
+    @media (max-width: 768px) {
+        .custom-cursor {
+            display: none;
+        }
+    }
+`;
+document.head.appendChild(uiStyles);
+
+// ========================================
+// INITIALIZE UI COMPONENTS
+// ========================================
+
+document.addEventListener('DOMContentLoaded', () => {
+    // Initialize all UI components
+    const navigation = new NavigationController();
+    const projectFilter = new ProjectFilter();
+    const musicPlayer = new MusicPlayerUI();
+    const contactForm = new ContactFormHandler();
+    const lazyLoader = new LazyLoader();
+    const themeManager = new ThemeManager();
+    
+    // Only initialize cursor effects on desktop
+    if (window.innerWidth > 768) {
+        const cursorEffects = new CursorEffects();
+    }
+    
+    // Expose theme manager for console access
+    window.ThemeManager = themeManager;
+    
+    console.log(`
+    ╔══════════════════════════════════════╗
+    ║  👽 Thomas Tin Tin Portfolio v1.0    ║
+    ║  ═══════════════════════════════════ ║
+    ║  Tech • Music • Art • Innovation     ║
+    ║                                      ║
+    ║  Try: ThemeManager.setTheme('cosmic')║
+    ╚══════════════════════════════════════╝
+    `);
+});
+
+// ========================================
+// UTILITY FUNCTIONS
+// ========================================
+
+// Debounce function for performance
+function debounce(func, wait) {
+    let timeout;
+    return function executedFunction(...args) {
+        const later = () => {
+            clearTimeout(timeout);
+            func(...args);
+        };
+        clearTimeout(timeout);
+        timeout = setTimeout(later, wait);
+    };
+}
+
+// Throttle function for scroll events
+function throttle(func, limit) {
+    let inThrottle;
+    return function(...args) {
+        if (!inThrottle) {
+            func.apply(this, args);
+            inThrottle = true;
+            setTimeout(() => inThrottle = false, limit);
+        }
+    };
+}
+
+// Export utilities
+window.UIUtils = { debounce, throttle };
