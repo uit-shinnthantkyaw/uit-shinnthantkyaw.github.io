@@ -11,40 +11,88 @@
 class StarfieldAnimation {
     constructor(canvasId) {
         this.canvas = document.getElementById(canvasId);
+        if (!this.canvas) return;
+        
         this.ctx = this.canvas.getContext('2d');
         this.stars = [];
         this.nebulas = [];
         this.shootingStars = [];
         this.mouseX = 0;
         this.mouseY = 0;
+        this.isMobile = window.innerWidth <= 768;
+        this.isReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
         
         this.init();
         this.setupEventListeners();
-        this.animate();
+        if (!this.isReducedMotion) {
+            this.animate();
+        } else {
+            this.drawStatic();
+        }
     }
     
     init() {
         this.resize();
-        this.createStars(200);
-        this.createNebulas(5);
+        // Reduce particles on mobile for performance
+        const starCount = this.isMobile ? 100 : 200;
+        const nebulaCount = this.isMobile ? 3 : 5;
+        this.createStars(starCount);
+        this.createNebulas(nebulaCount);
     }
     
     resize() {
         this.canvas.width = window.innerWidth;
         this.canvas.height = window.innerHeight;
+        this.isMobile = window.innerWidth <= 768;
     }
     
     setupEventListeners() {
-        window.addEventListener('resize', () => this.resize());
+        window.addEventListener('resize', debounce(() => this.resize(), 250));
         
-        document.addEventListener('mousemove', (e) => {
-            this.mouseX = e.clientX;
-            this.mouseY = e.clientY;
+        // Mouse tracking (desktop only)
+        if (!this.isMobile) {
+            document.addEventListener('mousemove', (e) => {
+                this.mouseX = e.clientX;
+                this.mouseY = e.clientY;
+            });
+            
+            // Trigger shooting star on click
+            document.addEventListener('click', (e) => {
+                if (!this.isReducedMotion) {
+                    this.createShootingStar(e.clientX, e.clientY);
+                }
+            });
+        }
+        
+        // Touch support for mobile
+        document.addEventListener('touchstart', (e) => {
+            if (!this.isReducedMotion && e.touches[0]) {
+                this.createShootingStar(e.touches[0].clientX, e.touches[0].clientY);
+            }
+        }, { passive: true });
+    }
+    
+    drawStatic() {
+        // Draw a static version for reduced motion preference
+        this.ctx.fillStyle = 'rgba(5, 5, 16, 1)';
+        this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height);
+        
+        this.nebulas.forEach(nebula => {
+            const gradient = this.ctx.createRadialGradient(
+                nebula.x, nebula.y, 0,
+                nebula.x, nebula.y, nebula.radius
+            );
+            gradient.addColorStop(0, nebula.color);
+            gradient.addColorStop(1, 'transparent');
+            this.ctx.fillStyle = gradient;
+            this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height);
         });
         
-        // Trigger shooting star on click
-        document.addEventListener('click', (e) => {
-            this.createShootingStar(e.clientX, e.clientY);
+        this.stars.forEach(star => {
+            this.ctx.beginPath();
+            this.ctx.arc(star.x, star.y, star.radius, 0, Math.PI * 2);
+            this.ctx.fillStyle = star.color;
+            this.ctx.fill();
         });
     }
     
@@ -185,6 +233,8 @@ class StarfieldAnimation {
     }
     
     animate() {
+        if (this.isReducedMotion) return;
+        
         const time = Date.now() * 0.001;
         
         // Clear canvas with slight fade for trail effect
@@ -203,8 +253,9 @@ class StarfieldAnimation {
         // Clean up faded shooting stars
         this.shootingStars = this.shootingStars.filter(star => star.opacity > 0);
         
-        // Randomly create shooting stars
-        if (Math.random() < 0.003) {
+        // Randomly create shooting stars (less frequent on mobile)
+        const shootingStarChance = this.isMobile ? 0.001 : 0.003;
+        if (Math.random() < shootingStarChance) {
             this.createShootingStar();
         }
         
@@ -219,10 +270,18 @@ class StarfieldAnimation {
 class FloatingParticles {
     constructor(containerId) {
         this.container = document.getElementById(containerId);
-        this.particles = [];
-        this.particleCount = 30;
+        if (!this.container) return;
         
-        this.init();
+        this.particles = [];
+        this.isMobile = window.innerWidth <= 768;
+        this.isReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        
+        // Reduce particle count on mobile
+        this.particleCount = this.isMobile ? 15 : 30;
+        
+        if (!this.isReducedMotion) {
+            this.init();
+        }
     }
     
     init() {
@@ -451,6 +510,19 @@ class CounterAnimation {
 // ========================================
 // INITIALIZE ANIMATIONS
 // ========================================
+
+// Debounce utility for resize events
+function debounce(func, wait) {
+    let timeout;
+    return function executedFunction(...args) {
+        const later = () => {
+            clearTimeout(timeout);
+            func(...args);
+        };
+        clearTimeout(timeout);
+        timeout = setTimeout(later, wait);
+    };
+}
 
 document.addEventListener('DOMContentLoaded', () => {
     // Initialize starfield

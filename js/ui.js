@@ -386,6 +386,11 @@ class ContactFormHandler {
 
 class CursorEffects {
     constructor() {
+        // Don't initialize on touch devices
+        if ('ontouchstart' in window || navigator.maxTouchPoints > 0) {
+            return;
+        }
+        
         this.cursor = this.createCursor();
         this.cursorTrail = [];
         this.trailLength = 10;
@@ -406,16 +411,28 @@ class CursorEffects {
             z-index: 99999;
             transition: transform 0.1s ease, width 0.2s ease, height 0.2s ease;
             mix-blend-mode: difference;
+            display: none;
         `;
         document.body.appendChild(cursor);
         return cursor;
     }
     
     init() {
-        document.addEventListener('mousemove', (e) => this.moveCursor(e));
+        if (!this.cursor) return;
+        
+        // Show cursor only on mouse movement
+        document.addEventListener('mousemove', (e) => {
+            this.cursor.style.display = 'block';
+            this.moveCursor(e);
+        });
+        
+        // Hide on touch
+        document.addEventListener('touchstart', () => {
+            if (this.cursor) this.cursor.style.display = 'none';
+        });
         
         // Hover effects on interactive elements
-        const interactiveElements = document.querySelectorAll('a, button, .project-card, .music-card');
+        const interactiveElements = document.querySelectorAll('a, button, .project-card, .music-card, .filter-btn');
         interactiveElements.forEach(el => {
             el.addEventListener('mouseenter', () => this.expandCursor());
             el.addEventListener('mouseleave', () => this.shrinkCursor());
@@ -423,16 +440,19 @@ class CursorEffects {
     }
     
     moveCursor(e) {
+        if (!this.cursor) return;
         this.cursor.style.left = e.clientX - 10 + 'px';
         this.cursor.style.top = e.clientY - 10 + 'px';
     }
     
     expandCursor() {
+        if (!this.cursor) return;
         this.cursor.style.transform = 'scale(2)';
         this.cursor.style.background = 'rgba(0, 255, 136, 0.1)';
     }
     
     shrinkCursor() {
+        if (!this.cursor) return;
         this.cursor.style.transform = 'scale(1)';
         this.cursor.style.background = 'transparent';
     }
@@ -494,6 +514,16 @@ class ThemeManager {
                 bgDark: '#000000'
             }
         };
+        
+        // Load saved theme
+        this.loadSavedTheme();
+    }
+    
+    loadSavedTheme() {
+        const saved = localStorage.getItem('portfolio-theme');
+        if (saved && this.themes[saved]) {
+            this.setTheme(saved);
+        }
     }
     
     setTheme(themeName) {
@@ -507,7 +537,13 @@ class ThemeManager {
         root.style.setProperty('--accent-color', theme.accent);
         root.style.setProperty('--bg-dark', theme.bgDark);
         
+        // Update glow variables
+        root.style.setProperty('--glow-green', `0 0 20px ${theme.primary}80`);
+        
         this.currentTheme = themeName;
+        
+        // Save preference
+        localStorage.setItem('portfolio-theme', themeName);
     }
 }
 
@@ -590,6 +626,20 @@ document.head.appendChild(uiStyles);
 // ========================================
 
 document.addEventListener('DOMContentLoaded', () => {
+    // Hide loading overlay after content loads
+    const loadingOverlay = document.getElementById('loadingOverlay');
+    
+    window.addEventListener('load', () => {
+        setTimeout(() => {
+            loadingOverlay.classList.add('hidden');
+        }, 800);
+    });
+    
+    // Fallback: hide loading after 3 seconds max
+    setTimeout(() => {
+        loadingOverlay.classList.add('hidden');
+    }, 3000);
+    
     // Initialize all UI components
     const navigation = new NavigationController();
     const projectFilter = new ProjectFilter();
@@ -598,8 +648,13 @@ document.addEventListener('DOMContentLoaded', () => {
     const lazyLoader = new LazyLoader();
     const themeManager = new ThemeManager();
     
+    // Initialize new interactive components
+    const backToTop = new BackToTopButton();
+    const quickActions = new QuickActionsBar();
+    const themeToggle = new ThemeToggleButton(themeManager);
+    
     // Only initialize cursor effects on desktop
-    if (window.innerWidth > 768) {
+    if (window.innerWidth > 768 && !('ontouchstart' in window)) {
         const cursorEffects = new CursorEffects();
     }
     
@@ -608,7 +663,7 @@ document.addEventListener('DOMContentLoaded', () => {
     
     console.log(`
     ╔══════════════════════════════════════╗
-    ║  👽 Thomas Tin Tin Portfolio v1.0    ║
+    ║  👽 Thomas Tin Tin Portfolio v1.1    ║
     ║  ═══════════════════════════════════ ║
     ║  Tech • Music • Art • Innovation     ║
     ║                                      ║
@@ -616,6 +671,166 @@ document.addEventListener('DOMContentLoaded', () => {
     ╚══════════════════════════════════════╝
     `);
 });
+
+// ========================================
+// BACK TO TOP BUTTON
+// ========================================
+
+class BackToTopButton {
+    constructor() {
+        this.button = document.getElementById('backToTop');
+        this.init();
+    }
+    
+    init() {
+        if (!this.button) return;
+        
+        window.addEventListener('scroll', throttle(() => {
+            if (window.scrollY > 500) {
+                this.button.classList.add('visible');
+            } else {
+                this.button.classList.remove('visible');
+            }
+        }, 100));
+        
+        this.button.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+    }
+}
+
+// ========================================
+// QUICK ACTIONS BAR
+// ========================================
+
+class QuickActionsBar {
+    constructor() {
+        this.bar = document.getElementById('quickActions');
+        this.buttons = document.querySelectorAll('.quick-action-btn');
+        this.init();
+    }
+    
+    init() {
+        if (!this.bar) return;
+        
+        // Show/hide based on scroll position
+        window.addEventListener('scroll', throttle(() => {
+            if (window.scrollY > 300) {
+                this.bar.classList.add('visible');
+            } else {
+                this.bar.classList.remove('visible');
+            }
+        }, 100));
+        
+        // Handle button clicks
+        this.buttons.forEach(btn => {
+            btn.addEventListener('click', () => this.handleAction(btn));
+        });
+    }
+    
+    handleAction(btn) {
+        const action = btn.getAttribute('data-action');
+        
+        switch (action) {
+            case 'home':
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+                break;
+            case 'projects':
+                document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' });
+                break;
+            case 'music':
+                document.getElementById('music')?.scrollIntoView({ behavior: 'smooth' });
+                // Auto-play music visualizer
+                const playBtn = document.getElementById('playBtn');
+                if (playBtn && playBtn.textContent === '▶️') {
+                    playBtn.click();
+                }
+                break;
+            case 'contact':
+                document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
+                break;
+            case 'alien':
+                // Trigger alien character interaction
+                const alien = document.getElementById('alienCharacter');
+                if (alien) {
+                    alien.click();
+                    alien.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                }
+                break;
+        }
+        
+        // Visual feedback
+        btn.classList.add('active');
+        setTimeout(() => btn.classList.remove('active'), 300);
+    }
+}
+
+// ========================================
+// THEME TOGGLE BUTTON
+// ========================================
+
+class ThemeToggleButton {
+    constructor(themeManager) {
+        this.button = document.getElementById('themeToggle');
+        this.themeManager = themeManager;
+        this.themes = ['alien', 'cosmic', 'matrix'];
+        this.currentIndex = 0;
+        this.init();
+    }
+    
+    init() {
+        if (!this.button) return;
+        
+        this.button.addEventListener('click', () => {
+            this.currentIndex = (this.currentIndex + 1) % this.themes.length;
+            const newTheme = this.themes[this.currentIndex];
+            this.themeManager.setTheme(newTheme);
+            
+            // Update button appearance
+            this.updateButtonIcon(newTheme);
+            
+            // Show notification
+            this.showThemeNotification(newTheme);
+        });
+    }
+    
+    updateButtonIcon(theme) {
+        const icons = {
+            alien: '👽',
+            cosmic: '🌌',
+            matrix: '💚'
+        };
+        this.button.textContent = icons[theme] || '🎨';
+    }
+    
+    showThemeNotification(theme) {
+        const notification = document.createElement('div');
+        notification.textContent = `Theme: ${theme.charAt(0).toUpperCase() + theme.slice(1)}`;
+        notification.style.cssText = `
+            position: fixed;
+            top: 130px;
+            right: 20px;
+            padding: 10px 20px;
+            background: var(--bg-card);
+            border: 1px solid var(--primary-color);
+            border-radius: 10px;
+            color: var(--primary-color);
+            font-family: 'Space Mono', monospace;
+            font-size: 0.85rem;
+            z-index: 1000;
+            animation: slideInRight 0.3s ease forwards;
+        `;
+        
+        document.body.appendChild(notification);
+        setTimeout(() => {
+            notification.style.animation = 'slideOutRight 0.3s ease forwards';
+            setTimeout(() => notification.remove(), 300);
+        }, 2000);
+    }
+}
 
 // ========================================
 // UTILITY FUNCTIONS

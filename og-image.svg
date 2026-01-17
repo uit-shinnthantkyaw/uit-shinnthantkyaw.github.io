@@ -1,0 +1,128 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#050510"/>
+      <stop offset="50%" style="stop-color:#0a0a1a"/>
+      <stop offset="100%" style="stop-color:#0f0f2a"/>
+    </linearGradient>
+    <linearGradient id="glow" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#00ff88"/>
+      <stop offset="50%" style="stop-color:#00ffff"/>
+      <stop offset="100%" style="stop-color:#ff00ff"/>
+    </linearGradient>
+    <filter id="neon" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="3" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <filter id="bigGlow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="8" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  
+  <!-- Stars -->
+  <g fill="#ffffff" opacity="0.6">
+    <circle cx="100" cy="80" r="1.5"/>
+    <circle cx="200" cy="150" r="1"/>
+    <circle cx="350" cy="50" r="2"/>
+    <circle cx="500" cy="120" r="1"/>
+    <circle cx="650" cy="80" r="1.5"/>
+    <circle cx="800" cy="180" r="1"/>
+    <circle cx="950" cy="60" r="2"/>
+    <circle cx="1100" cy="140" r="1.5"/>
+    <circle cx="150" cy="550" r="1"/>
+    <circle cx="300" cy="480" r="1.5"/>
+    <circle cx="450" cy="580" r="1"/>
+    <circle cx="700" cy="520" r="2"/>
+    <circle cx="850" cy="560" r="1"/>
+    <circle cx="1000" cy="500" r="1.5"/>
+    <circle cx="1150" cy="580" r="1"/>
+    <circle cx="50" cy="300" r="1"/>
+    <circle cx="1150" cy="350" r="1.5"/>
+  </g>
+  
+  <!-- Nebula effects -->
+  <ellipse cx="200" cy="400" rx="200" ry="150" fill="#00ff88" opacity="0.05"/>
+  <ellipse cx="1000" cy="200" rx="250" ry="180" fill="#ff00ff" opacity="0.04"/>
+  <ellipse cx="600" cy="315" rx="300" ry="200" fill="#00ffff" opacity="0.03"/>
+  
+  <!-- Alien Character -->
+  <g transform="translate(180, 200)">
+    <!-- Alien Head -->
+    <ellipse cx="70" cy="60" rx="50" ry="60" fill="#22c55e" filter="url(#bigGlow)"/>
+    <ellipse cx="70" cy="60" rx="48" ry="58" fill="url(#alienHead)"/>
+    <defs>
+      <linearGradient id="alienHead" x1="0%" y1="0%" x2="0%" y2="100%">
+        <stop offset="0%" style="stop-color:#4ade80"/>
+        <stop offset="100%" style="stop-color:#22c55e"/>
+      </linearGradient>
+    </defs>
+    
+    <!-- Eyes -->
+    <ellipse cx="50" cy="55" rx="12" ry="16" fill="#000000"/>
+    <ellipse cx="90" cy="55" rx="12" ry="16" fill="#000000"/>
+    <circle cx="46" cy="50" r="4" fill="#ffffff"/>
+    <circle cx="86" cy="50" r="4" fill="#ffffff"/>
+    
+    <!-- Antennas -->
+    <line x1="40" y1="5" x2="30" y2="-20" stroke="#22c55e" stroke-width="4" stroke-linecap="round"/>
+    <circle cx="30" cy="-25" r="8" fill="#00ff88" filter="url(#neon)"/>
+    <line x1="100" y1="5" x2="110" y2="-20" stroke="#22c55e" stroke-width="4" stroke-linecap="round"/>
+    <circle cx="110" cy="-25" r="8" fill="#00ff88" filter="url(#neon)"/>
+    
+    <!-- Body -->
+    <ellipse cx="70" cy="150" rx="30" ry="40" fill="#22c55e"/>
+    
+    <!-- Arms waving -->
+    <path d="M40 130 Q10 110 -10 140" stroke="#22c55e" stroke-width="12" stroke-linecap="round" fill="none"/>
+    <path d="M100 130 Q130 100 160 90" stroke="#22c55e" stroke-width="12" stroke-linecap="round" fill="none"/>
+  </g>
+  
+  <!-- Main Text -->
+  <text x="600" y="250" text-anchor="middle" font-family="Arial Black, sans-serif" font-size="72" font-weight="900" fill="url(#glow)" filter="url(#neon)">
+    THOMAS TIN TIN
+  </text>
+  
+  <!-- Subtitle -->
+  <text x="600" y="320" text-anchor="middle" font-family="Arial, sans-serif" font-size="28" fill="#a0a0c0">
+    Tech Entrepreneur • Music Producer • Digital Artist
+  </text>
+  
+  <!-- Decorative line -->
+  <line x1="350" y1="360" x2="850" y2="360" stroke="url(#glow)" stroke-width="2" opacity="0.6"/>
+  
+  <!-- Tags -->
+  <g font-family="Arial, sans-serif" font-size="18">
+    <rect x="320" y="400" width="120" height="36" rx="18" fill="rgba(0,255,136,0.15)" stroke="#00ff88" stroke-width="1"/>
+    <text x="380" y="424" text-anchor="middle" fill="#00ff88">🚀 Tech</text>
+    
+    <rect x="460" y="400" width="120" height="36" rx="18" fill="rgba(255,0,255,0.15)" stroke="#ff00ff" stroke-width="1"/>
+    <text x="520" y="424" text-anchor="middle" fill="#ff00ff">🎵 Music</text>
+    
+    <rect x="600" y="400" width="120" height="36" rx="18" fill="rgba(0,255,255,0.15)" stroke="#00ffff" stroke-width="1"/>
+    <text x="660" y="424" text-anchor="middle" fill="#00ffff">🎨 Art</text>
+    
+    <rect x="740" y="400" width="140" height="36" rx="18" fill="rgba(255,255,0,0.15)" stroke="#ffff00" stroke-width="1"/>
+    <text x="810" y="424" text-anchor="middle" fill="#ffff00">💫 Innovation</text>
+  </g>
+  
+  <!-- Website URL -->
+  <text x="600" y="580" text-anchor="middle" font-family="monospace" font-size="20" fill="#00ff88" opacity="0.8">
+    uit-shinnthantkyaw.github.io
+  </text>
+  
+  <!-- Corner decorations -->
+  <path d="M0 0 L80 0 L80 5 L5 5 L5 80 L0 80 Z" fill="#00ff88" opacity="0.3"/>
+  <path d="M1200 0 L1120 0 L1120 5 L1195 5 L1195 80 L1200 80 Z" fill="#ff00ff" opacity="0.3"/>
+  <path d="M0 630 L80 630 L80 625 L5 625 L5 550 L0 550 Z" fill="#00ffff" opacity="0.3"/>
+  <path d="M1200 630 L1120 630 L1120 625 L1195 625 L1195 550 L1200 550 Z" fill="#00ff88" opacity="0.3"/>
+</svg>
