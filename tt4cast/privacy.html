@@ -4,91 +4,118 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Privacy Policy for TT4Cast - Free Podcast Discovery & Streaming App">
-    <meta name="keywords" content="TT4Cast, Privacy Policy, Podcast App, Data Protection">
     <meta name="author" content="Thomas Tin Tin">
-    <meta name="theme-color" content="#6366f1">
-    
-    <!-- Open Graph -->
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://thomastintin.me/tt4cast/privacy">
-    <meta property="og:title" content="Privacy Policy | TT4Cast">
-    <meta property="og:description" content="Privacy Policy for TT4Cast - Your Free Podcast Player">
+    <meta name="theme-color" content="#00ff88">
     
     <title>Privacy Policy | TT4Cast</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary: #6366f1;
-            --primary-dark: #4f46e5;
-            --bg: #0f172a;
-            --bg-card: #1e293b;
-            --text: #f8fafc;
-            --text-muted: #94a3b8;
-            --border: #334155;
+            --primary-color: #00ff88;
+            --secondary-color: #ff00ff;
+            --accent-color: #00ffff;
+            --bg-dark: #0a0a1a;
+            --bg-card: rgba(20, 20, 40, 0.8);
+            --text-primary: #ffffff;
+            --text-secondary: #a0a0c0;
+            --glow-green: 0 0 20px rgba(0, 255, 136, 0.5);
+            --font-display: 'Orbitron', sans-serif;
+            --font-body: 'Space Mono', monospace;
         }
         
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
         
         body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-            background: var(--bg);
-            color: var(--text);
+            font-family: var(--font-body);
+            background: var(--bg-dark);
+            color: var(--text-primary);
             line-height: 1.7;
             min-height: 100vh;
         }
         
+        .stars {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            pointer-events: none;
+            z-index: -1;
+            background: 
+                radial-gradient(2px 2px at 20px 30px, #00ff88, transparent),
+                radial-gradient(2px 2px at 40px 70px, #ff00ff, transparent),
+                radial-gradient(1px 1px at 90px 40px, #00ffff, transparent),
+                radial-gradient(2px 2px at 160px 120px, #00ff88, transparent),
+                radial-gradient(1px 1px at 230px 80px, #ffffff, transparent),
+                radial-gradient(2px 2px at 300px 150px, #ff00ff, transparent);
+            background-repeat: repeat;
+            background-size: 600px 300px;
+            animation: twinkle 8s ease-in-out infinite;
+        }
+        
+        @keyframes twinkle { 0%, 100% { opacity: 0.8; } 50% { opacity: 0.4; } }
+        
         .header {
-            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
-            padding: 60px 20px;
+            background: linear-gradient(135deg, rgba(0, 255, 136, 0.2) 0%, rgba(255, 0, 255, 0.1) 100%);
+            padding: 80px 20px 60px;
             text-align: center;
+            border-bottom: 1px solid rgba(0, 255, 136, 0.2);
+            position: relative;
+        }
+        
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: radial-gradient(circle at 50% 50%, rgba(0, 255, 136, 0.1) 0%, transparent 70%);
+            pointer-events: none;
         }
         
         .header-content {
             max-width: 800px;
             margin: 0 auto;
-        }
-        
-        .app-icon {
-            width: 80px;
-            height: 80px;
-            background: white;
-            border-radius: 20px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 40px;
-            margin: 0 auto 20px;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.3);
-        }
-        
-        .header h1 {
-            font-size: 2.5rem;
-            font-weight: 700;
-            margin-bottom: 10px;
-        }
-        
-        .header p {
-            font-size: 1.1rem;
-            opacity: 0.9;
+            position: relative;
+            z-index: 1;
         }
         
         .back-link {
             display: inline-flex;
             align-items: center;
             gap: 8px;
-            color: white;
+            color: var(--primary-color);
             text-decoration: none;
-            margin-bottom: 20px;
-            opacity: 0.8;
-            transition: opacity 0.2s;
+            margin-bottom: 24px;
+            font-size: 0.9rem;
+            transition: all 0.3s;
         }
         
         .back-link:hover {
-            opacity: 1;
+            text-shadow: var(--glow-green);
+        }
+        
+        .app-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 40px;
+            margin: 0 auto 24px;
+            box-shadow: var(--glow-green), 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+        
+        .header h1 {
+            font-family: var(--font-display);
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 12px;
+            color: var(--primary-color);
+            text-shadow: var(--glow-green);
+        }
+        
+        .header p {
+            font-size: 1rem;
+            color: var(--text-secondary);
         }
         
         .container {
@@ -99,15 +126,37 @@
         
         .policy-card {
             background: var(--bg-card);
-            border-radius: 16px;
+            border-radius: 20px;
             padding: 32px;
             margin-bottom: 24px;
-            border: 1px solid var(--border);
+            border: 1px solid rgba(0, 255, 136, 0.1);
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .policy-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        
+        .policy-card:hover {
+            border-color: rgba(0, 255, 136, 0.3);
+        }
+        
+        .policy-card:hover::before {
+            opacity: 1;
         }
         
         .policy-card h2 {
-            color: var(--primary);
-            font-size: 1.4rem;
+            font-family: var(--font-display);
+            color: var(--primary-color);
+            font-size: 1.2rem;
             margin-bottom: 16px;
             display: flex;
             align-items: center;
@@ -115,7 +164,7 @@
         }
         
         .policy-card p {
-            color: var(--text-muted);
+            color: var(--text-secondary);
             margin-bottom: 12px;
         }
         
@@ -124,7 +173,7 @@
         }
         
         .policy-card ul {
-            color: var(--text-muted);
+            color: var(--text-secondary);
             margin-left: 20px;
             margin-bottom: 12px;
         }
@@ -134,73 +183,78 @@
         }
         
         .policy-card strong {
-            color: var(--text);
+            color: var(--text-primary);
         }
         
         .highlight-box {
-            background: rgba(99, 102, 241, 0.1);
-            border-left: 4px solid var(--primary);
+            background: rgba(0, 255, 136, 0.1);
+            border-left: 4px solid var(--primary-color);
             padding: 16px 20px;
-            border-radius: 0 8px 8px 0;
+            border-radius: 0 12px 12px 0;
             margin: 16px 0;
         }
         
         .highlight-box p {
-            color: var(--text);
+            color: var(--text-primary);
             margin: 0;
         }
         
         .last-updated {
             text-align: center;
-            color: var(--text-muted);
+            color: var(--text-secondary);
             padding: 20px;
             font-size: 0.9rem;
+        }
+        
+        .contact-info {
+            background: rgba(0, 255, 255, 0.1);
+            border-radius: 12px;
+            padding: 20px;
+            margin-top: 20px;
+            border: 1px solid rgba(0, 255, 255, 0.2);
+        }
+        
+        .contact-info p {
+            margin-bottom: 8px;
+        }
+        
+        .contact-info a {
+            color: var(--primary-color);
+            text-decoration: none;
+        }
+        
+        .contact-info a:hover {
+            text-shadow: var(--glow-green);
         }
         
         .footer {
             text-align: center;
             padding: 40px 20px;
-            border-top: 1px solid var(--border);
-            color: var(--text-muted);
+            border-top: 1px solid rgba(0, 255, 136, 0.2);
+            color: var(--text-secondary);
         }
         
         .footer a {
-            color: var(--primary);
+            color: var(--primary-color);
             text-decoration: none;
+            margin: 0 10px;
         }
         
         .footer a:hover {
-            text-decoration: underline;
-        }
-        
-        .contact-info {
-            background: var(--bg-card);
-            border-radius: 12px;
-            padding: 20px;
-            margin-top: 20px;
-            display: inline-block;
+            text-shadow: var(--glow-green);
         }
         
         @media (max-width: 600px) {
-            .header {
-                padding: 40px 20px;
-            }
-            
-            .header h1 {
-                font-size: 1.8rem;
-            }
-            
-            .policy-card {
-                padding: 24px;
-            }
-            
-            .policy-card h2 {
-                font-size: 1.2rem;
-            }
+            .header { padding: 60px 20px 40px; }
+            .header h1 { font-size: 1.8rem; }
+            .policy-card { padding: 24px; }
+            .policy-card h2 { font-size: 1rem; }
         }
     </style>
 </head>
 <body>
+    <div class="stars"></div>
+    
     <header class="header">
         <div class="header-content">
             <a href="/tt4cast/" class="back-link">← Back to TT4Cast</a>
@@ -308,7 +362,7 @@
             <p>If you have any questions, concerns, or requests regarding this Privacy Policy or your data, please contact us:</p>
             <div class="contact-info">
                 <p><strong>Email:</strong> contact@thomastintin.me</p>
-                <p><strong>Website:</strong> <a href="https://thomastintin.me" style="color: var(--primary);">thomastintin.me</a></p>
+                <p><strong>Website:</strong> <a href="https://thomastintin.me">thomastintin.me</a></p>
                 <p><strong>Developer:</strong> Thomas Tin Tin</p>
             </div>
         </div>
@@ -317,10 +371,10 @@
     </main>
     
     <footer class="footer">
-        <p>© 2026 TT4Cast. All rights reserved.</p>
+        <p>© 2026 TT4Cast. All rights reserved across all galaxies. 👽</p>
         <p style="margin-top: 10px;">
-            <a href="/tt4cast/">App Home</a> · 
-            <a href="/tt4cast/terms">Terms of Service</a> · 
+            <a href="/tt4cast/">App Home</a>
+            <a href="/tt4cast/terms">Terms of Service</a>
             <a href="/">thomastintin.me</a>
         </p>
     </footer>
