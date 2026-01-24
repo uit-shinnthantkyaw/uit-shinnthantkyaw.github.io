@@ -2,196 +2,136 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Terms of Service for TT4Cast - Free Podcast Discovery & Streaming App">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="description" content="Terms of Service for TT4Cast - Free Podcast Discovery & Streaming App.">
     <meta name="author" content="Thomas Tin Tin">
     <meta name="theme-color" content="#00ff88">
     
+    <link rel="canonical" href="https://thomastintin.me/tt4cast/terms">
+    
     <title>Terms of Service | TT4Cast</title>
+    <link rel="stylesheet" href="/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+    
     <style>
-        :root {
-            --primary-color: #00ff88;
-            --secondary-color: #ff00ff;
-            --accent-color: #00ffff;
-            --bg-dark: #0a0a1a;
-            --bg-card: rgba(20, 20, 40, 0.8);
-            --text-primary: #ffffff;
-            --text-secondary: #a0a0c0;
-            --glow-green: 0 0 20px rgba(0, 255, 136, 0.5);
-            --font-display: 'Orbitron', sans-serif;
-            --font-body: 'Space Mono', monospace;
-        }
-        
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        
-        body {
-            font-family: var(--font-body);
-            background: var(--bg-dark);
-            color: var(--text-primary);
-            line-height: 1.7;
-            min-height: 100vh;
-        }
-        
-        .stars {
-            position: fixed;
-            top: 0; left: 0;
-            width: 100%; height: 100%;
-            pointer-events: none;
-            z-index: -1;
-            background: 
-                radial-gradient(2px 2px at 20px 30px, #00ff88, transparent),
-                radial-gradient(2px 2px at 40px 70px, #ff00ff, transparent),
-                radial-gradient(1px 1px at 90px 40px, #00ffff, transparent),
-                radial-gradient(2px 2px at 160px 120px, #00ff88, transparent),
-                radial-gradient(1px 1px at 230px 80px, #ffffff, transparent),
-                radial-gradient(2px 2px at 300px 150px, #ff00ff, transparent);
-            background-repeat: repeat;
-            background-size: 600px 300px;
-            animation: twinkle 8s ease-in-out infinite;
-        }
-        
-        @keyframes twinkle { 0%, 100% { opacity: 0.8; } 50% { opacity: 0.4; } }
-        
-        .header {
-            background: linear-gradient(135deg, rgba(255, 0, 255, 0.15) 0%, rgba(0, 255, 255, 0.1) 100%);
-            padding: 80px 20px 60px;
+        /* TT4Cast Legal Pages Styles */
+        .legal-hero {
+            padding: 8rem 2rem 4rem;
             text-align: center;
-            border-bottom: 1px solid rgba(0, 255, 136, 0.2);
             position: relative;
         }
         
-        .header::before {
+        .legal-hero::after {
             content: '';
             position: absolute;
-            top: 0; left: 0; right: 0; bottom: 0;
-            background: radial-gradient(circle at 50% 50%, rgba(255, 0, 255, 0.1) 0%, transparent 70%);
-            pointer-events: none;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--accent-color), transparent);
         }
         
-        .header-content {
-            max-width: 800px;
-            margin: 0 auto;
-            position: relative;
-            z-index: 1;
+        .legal-icon {
+            font-size: 4rem;
+            margin-bottom: 1.5rem;
+            display: block;
         }
         
-        .back-link {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            color: var(--primary-color);
-            text-decoration: none;
-            margin-bottom: 24px;
-            font-size: 0.9rem;
-            transition: all 0.3s;
-        }
-        
-        .back-link:hover {
-            text-shadow: var(--glow-green);
-        }
-        
-        .app-icon {
-            width: 80px;
-            height: 80px;
-            background: linear-gradient(135deg, var(--secondary-color), var(--accent-color));
-            border-radius: 20px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 40px;
-            margin: 0 auto 24px;
-            box-shadow: 0 0 20px rgba(255, 0, 255, 0.5), 0 20px 40px rgba(0, 0, 0, 0.3);
-        }
-        
-        .header h1 {
+        .legal-title {
             font-family: var(--font-display);
-            font-size: 2.5rem;
-            font-weight: 700;
-            margin-bottom: 12px;
-            color: var(--accent-color);
-            text-shadow: 0 0 20px rgba(0, 255, 255, 0.5);
+            font-size: 3rem;
+            font-weight: 900;
+            background: linear-gradient(135deg, var(--accent-color), var(--secondary-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 1rem;
         }
         
-        .header p {
-            font-size: 1rem;
+        .legal-subtitle {
             color: var(--text-secondary);
+            font-size: 1.1rem;
         }
         
-        .container {
+        .legal-content {
             max-width: 800px;
             margin: 0 auto;
-            padding: 40px 20px;
+            padding: 3rem 2rem;
         }
         
-        .policy-card {
+        .policy-section {
             background: var(--bg-card);
             border-radius: 20px;
-            padding: 32px;
-            margin-bottom: 24px;
-            border: 1px solid rgba(0, 255, 255, 0.1);
-            transition: all 0.3s;
+            padding: 2rem;
+            margin-bottom: 1.5rem;
+            border: 1px solid rgba(0, 255, 255, 0.15);
+            transition: all 0.3s ease;
             position: relative;
             overflow: hidden;
         }
         
-        .policy-card::before {
+        .policy-section::before {
             content: '';
             position: absolute;
-            top: 0; left: 0; right: 0;
-            height: 2px;
-            background: linear-gradient(90deg, var(--secondary-color), var(--accent-color));
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: linear-gradient(180deg, var(--accent-color), var(--secondary-color));
             opacity: 0;
-            transition: opacity 0.3s;
+            transition: opacity 0.3s ease;
         }
         
-        .policy-card:hover {
+        .policy-section:hover {
             border-color: rgba(0, 255, 255, 0.3);
+            transform: translateX(5px);
         }
         
-        .policy-card:hover::before {
+        .policy-section:hover::before {
             opacity: 1;
         }
         
-        .policy-card h2 {
+        .policy-section h2 {
             font-family: var(--font-display);
             color: var(--accent-color);
             font-size: 1.2rem;
-            margin-bottom: 16px;
+            margin-bottom: 1rem;
             display: flex;
             align-items: center;
             gap: 10px;
         }
         
-        .policy-card p {
+        .policy-section p {
             color: var(--text-secondary);
-            margin-bottom: 12px;
+            margin-bottom: 1rem;
+            line-height: 1.8;
         }
         
-        .policy-card p:last-child {
+        .policy-section p:last-child {
             margin-bottom: 0;
         }
         
-        .policy-card ul {
+        .policy-section ul {
             color: var(--text-secondary);
-            margin-left: 20px;
-            margin-bottom: 12px;
+            margin-left: 1.5rem;
+            margin-bottom: 1rem;
         }
         
-        .policy-card li {
-            margin-bottom: 8px;
+        .policy-section li {
+            margin-bottom: 0.5rem;
+            line-height: 1.7;
         }
         
-        .policy-card strong {
+        .policy-section strong {
             color: var(--text-primary);
         }
         
         .highlight-box {
-            background: rgba(255, 0, 255, 0.1);
+            background: rgba(255, 0, 255, 0.08);
             border-left: 4px solid var(--secondary-color);
-            padding: 16px 20px;
+            padding: 1rem 1.25rem;
             border-radius: 0 12px 12px 0;
-            margin: 16px 0;
+            margin: 1rem 0;
         }
         
         .highlight-box p {
@@ -199,79 +139,155 @@
             margin: 0;
         }
         
+        .contact-box {
+            background: rgba(0, 255, 136, 0.08);
+            border: 1px solid rgba(0, 255, 136, 0.2);
+            border-radius: 12px;
+            padding: 1.25rem;
+            margin-top: 1rem;
+        }
+        
+        .contact-box p {
+            margin-bottom: 0.5rem;
+        }
+        
+        .contact-box a {
+            color: var(--primary-color);
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+        
+        .contact-box a:hover {
+            text-shadow: var(--glow-green);
+        }
+        
         .last-updated {
             text-align: center;
             color: var(--text-secondary);
-            padding: 20px;
+            padding: 1.5rem;
             font-size: 0.9rem;
+            border-top: 1px solid rgba(0, 255, 255, 0.1);
+            margin-top: 2rem;
         }
         
-        .contact-info {
-            background: rgba(0, 255, 136, 0.1);
-            border-radius: 12px;
-            padding: 20px;
-            margin-top: 20px;
-            border: 1px solid rgba(0, 255, 136, 0.2);
-        }
-        
-        .contact-info p {
-            margin-bottom: 8px;
-        }
-        
-        .contact-info a {
-            color: var(--primary-color);
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--accent-color);
             text-decoration: none;
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
+            transition: all 0.3s;
         }
         
-        .contact-info a:hover {
-            text-shadow: var(--glow-green);
+        .back-link:hover {
+            text-shadow: var(--glow-cyan);
         }
         
-        .footer {
-            text-align: center;
-            padding: 40px 20px;
+        /* Footer */
+        .legal-footer {
+            padding: 3rem 2rem;
+            background: var(--bg-darker);
             border-top: 1px solid rgba(0, 255, 136, 0.2);
+            text-align: center;
+        }
+        
+        .legal-footer .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+        }
+        
+        .legal-footer .footer-links a {
             color: var(--text-secondary);
-        }
-        
-        .footer a {
-            color: var(--primary-color);
             text-decoration: none;
-            margin: 0 10px;
+            transition: color 0.3s ease;
         }
         
-        .footer a:hover {
-            text-shadow: var(--glow-green);
+        .legal-footer .footer-links a:hover {
+            color: var(--primary-color);
         }
         
-        @media (max-width: 600px) {
-            .header { padding: 60px 20px 40px; }
-            .header h1 { font-size: 1.8rem; }
-            .policy-card { padding: 24px; }
-            .policy-card h2 { font-size: 1rem; }
+        .legal-footer .copyright {
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+        }
+        
+        @media (max-width: 768px) {
+            .legal-hero {
+                padding: 6rem 1.5rem 3rem;
+            }
+            
+            .legal-title {
+                font-size: 2rem;
+            }
+            
+            .legal-icon {
+                font-size: 3rem;
+            }
+            
+            .policy-section {
+                padding: 1.5rem;
+            }
+            
+            .policy-section h2 {
+                font-size: 1rem;
+            }
+            
+            .legal-footer .footer-links {
+                gap: 1rem;
+            }
         }
     </style>
 </head>
 <body>
-    <div class="stars"></div>
+    <!-- Alien Background Canvas -->
+    <canvas id="alienCanvas"></canvas>
     
-    <header class="header">
-        <div class="header-content">
-            <a href="/tt4cast/" class="back-link">← Back to TT4Cast</a>
-            <div class="app-icon">📜</div>
-            <h1>Terms of Service</h1>
-            <p>TT4Cast - Free Podcast Discovery & Streaming</p>
+    <!-- Floating Particles -->
+    <div id="particles"></div>
+    
+    <!-- Navigation -->
+    <nav class="nav-alien">
+        <div class="nav-logo">
+            <a href="/" style="text-decoration: none;">
+                <span class="glow-text">👽 TT</span>
+            </a>
         </div>
+        <button class="nav-toggle" id="navToggle">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+        <ul class="nav-links" id="navLinks">
+            <li><a href="/" class="nav-link">Home</a></li>
+            <li><a href="/#about" class="nav-link">About</a></li>
+            <li><a href="/#projects" class="nav-link">Projects</a></li>
+            <li><a href="/tt4cast/" class="nav-link active">TT4Cast</a></li>
+            <li><a href="/#contact" class="nav-link">Contact</a></li>
+        </ul>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="legal-hero">
+        <a href="/tt4cast/" class="back-link">← Back to TT4Cast</a>
+        <span class="legal-icon">📜</span>
+        <h1 class="legal-title">Terms of Service</h1>
+        <p class="legal-subtitle">TT4Cast - Free Podcast Discovery & Streaming</p>
     </header>
-    
-    <main class="container">
-        <div class="policy-card">
+
+    <!-- Content -->
+    <main class="legal-content">
+        <div class="policy-section">
             <h2>📋 1. Acceptance of Terms</h2>
             <p>By downloading, installing, or using the TT4Cast application ("App"), you agree to be bound by these Terms of Service ("Terms").</p>
             <p>If you do not agree to these Terms, please do not use the App.</p>
         </div>
-        
-        <div class="policy-card">
+
+        <div class="policy-section">
             <h2>📱 2. Description of Service</h2>
             <p>TT4Cast is a free podcast discovery and streaming application that allows you to:</p>
             <ul>
@@ -284,8 +300,8 @@
                 <p>📢 <strong>Note:</strong> TT4Cast does not host or create podcast content. All podcast content is provided by third-party podcast creators and distributed through iTunes and Podcast Index APIs.</p>
             </div>
         </div>
-        
-        <div class="policy-card">
+
+        <div class="policy-section">
             <h2>👤 3. User Responsibilities</h2>
             <p>By using TT4Cast, you agree to:</p>
             <ul>
@@ -296,15 +312,15 @@
                 <li>Not attempt to access data not intended for you</li>
             </ul>
         </div>
-        
-        <div class="policy-card">
-            <h2>📜 4. Intellectual Property</h2>
+
+        <div class="policy-section">
+            <h2>📝 4. Intellectual Property</h2>
             <p><strong>Podcast Content:</strong> All podcast content (audio, artwork, descriptions) is owned by the respective podcast creators and publishers. TT4Cast does not claim ownership of any podcast content.</p>
             <p><strong>App Design & Code:</strong> The TT4Cast application design, code, and branding are owned by Thomas Tin Tin / TT4Cast.</p>
             <p><strong>Third-Party Services:</strong> iTunes and related services are trademarks of Apple Inc. Podcast Index is a separate service with its own terms.</p>
         </div>
-        
-        <div class="policy-card">
+
+        <div class="policy-section">
             <h2>🆓 5. Free Service</h2>
             <p>TT4Cast is provided free of charge. There are:</p>
             <ul>
@@ -315,8 +331,8 @@
             </ul>
             <p>We reserve the right to introduce optional paid features in the future, but the core functionality will remain free.</p>
         </div>
-        
-        <div class="policy-card">
+
+        <div class="policy-section">
             <h2>⚠️ 6. Disclaimers</h2>
             <p>TT4Cast is provided "AS IS" and "AS AVAILABLE" without warranties of any kind, either express or implied, including but not limited to:</p>
             <ul>
@@ -329,8 +345,8 @@
                 <p>⚠️ <strong>Content Disclaimer:</strong> We are not responsible for the accuracy, quality, or appropriateness of podcast content. Podcast content is created by third parties and we do not review or endorse it.</p>
             </div>
         </div>
-        
-        <div class="policy-card">
+
+        <div class="policy-section">
             <h2>🛡️ 7. Limitation of Liability</h2>
             <p>To the maximum extent permitted by applicable law, TT4Cast and its developer shall not be liable for:</p>
             <ul>
@@ -341,8 +357,8 @@
                 <li>Unauthorized access, use, or alteration of your transmissions or content</li>
             </ul>
         </div>
-        
-        <div class="policy-card">
+
+        <div class="policy-section">
             <h2>🔄 8. Modifications to Service</h2>
             <p>We reserve the right to:</p>
             <ul>
@@ -352,8 +368,8 @@
             </ul>
             <p>Continued use of the App after any changes constitutes acceptance of the new Terms.</p>
         </div>
-        
-        <div class="policy-card">
+
+        <div class="policy-section">
             <h2>🚫 9. Termination</h2>
             <p>We may terminate or suspend your access to the App immediately, without prior notice, for any reason, including:</p>
             <ul>
@@ -363,33 +379,58 @@
             </ul>
             <p>You may stop using the App at any time by uninstalling it from your device.</p>
         </div>
-        
-        <div class="policy-card">
+
+        <div class="policy-section">
             <h2>⚖️ 10. Governing Law</h2>
             <p>These Terms shall be governed by and construed in accordance with applicable laws, without regard to conflict of law principles.</p>
             <p>Any disputes arising from these Terms or your use of the App shall be resolved through good-faith negotiation.</p>
         </div>
-        
-        <div class="policy-card">
+
+        <div class="policy-section">
             <h2>📧 11. Contact Us</h2>
             <p>If you have any questions about these Terms of Service, please contact us:</p>
-            <div class="contact-info">
+            <div class="contact-box">
                 <p><strong>Email:</strong> contact@thomastintin.me</p>
                 <p><strong>Website:</strong> <a href="https://thomastintin.me">thomastintin.me</a></p>
                 <p><strong>Developer:</strong> Thomas Tin Tin</p>
             </div>
         </div>
-        
+
         <p class="last-updated">Last updated: January 24, 2026</p>
     </main>
-    
-    <footer class="footer">
-        <p>© 2026 TT4Cast. All rights reserved across all galaxies. 👽</p>
-        <p style="margin-top: 10px;">
-            <a href="/tt4cast/">App Home</a>
+
+    <!-- Footer -->
+    <footer class="legal-footer">
+        <div class="footer-links">
+            <a href="/tt4cast/">TT4Cast Home</a>
             <a href="/tt4cast/privacy">Privacy Policy</a>
             <a href="/">thomastintin.me</a>
-        </p>
+            <a href="/#contact">Contact</a>
+        </div>
+        <p class="copyright">© 2026 Thomas Tin Tin. All rights reserved across all galaxies. 👽</p>
     </footer>
+
+    <!-- Scripts -->
+    <script src="/js/animations.js"></script>
+    <script>
+        // Mobile nav toggle
+        const navToggle = document.getElementById('navToggle');
+        const navLinks = document.getElementById('navLinks');
+        
+        if (navToggle && navLinks) {
+            navToggle.addEventListener('click', () => {
+                navToggle.classList.toggle('active');
+                navLinks.classList.toggle('active');
+            });
+        }
+        
+        // Close nav when clicking a link
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', () => {
+                navToggle?.classList.remove('active');
+                navLinks?.classList.remove('active');
+            });
+        });
+    </script>
 </body>
 </html>

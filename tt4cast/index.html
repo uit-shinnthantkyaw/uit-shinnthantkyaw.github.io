@@ -2,489 +2,128 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="TT4Cast - Free Podcast Discovery & Streaming App. Discover, stream, and enjoy millions of podcasts. No account needed.">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="description" content="TT4Cast - Free Podcast Discovery & Streaming App. Discover, stream, and enjoy millions of podcasts. No account needed, completely free.">
     <meta name="keywords" content="TT4Cast, Podcast App, Free Podcast Player, Podcast Streaming, Android Podcast App">
     <meta name="author" content="Thomas Tin Tin">
     <meta name="theme-color" content="#00ff88">
     
+    <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://thomastintin.me/tt4cast/">
-    <meta property="og:title" content="TT4Cast - Free Podcast Discovery & Streaming">
-    <meta property="og:description" content="Discover & listen to millions of podcasts. Free, no account needed.">
+    <meta property="og:title" content="TT4Cast | Free Podcast Discovery & Streaming">
+    <meta property="og:description" content="Discover, stream, and enjoy millions of podcasts from around the world. No account needed, completely free.">
+    <meta property="og:image" content="https://thomastintin.me/tt4cast/og-image.png">
     
-    <title>TT4Cast - Free Podcast Discovery & Streaming App</title>
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="TT4Cast | Free Podcast Discovery & Streaming">
+    <meta name="twitter:description" content="Discover, stream, and enjoy millions of podcasts. No account needed, completely free.">
+    
+    <link rel="canonical" href="https://thomastintin.me/tt4cast/">
+    
+    <title>TT4Cast | Free Podcast Discovery & Streaming</title>
+    <link rel="stylesheet" href="/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+    
     <style>
-        :root {
-            --primary-color: #00ff88;
-            --secondary-color: #ff00ff;
-            --accent-color: #00ffff;
-            --bg-dark: #0a0a1a;
-            --bg-darker: #050510;
-            --bg-card: rgba(20, 20, 40, 0.8);
-            --text-primary: #ffffff;
-            --text-secondary: #a0a0c0;
-            --glow-green: 0 0 20px rgba(0, 255, 136, 0.5);
-            --glow-pink: 0 0 20px rgba(255, 0, 255, 0.5);
-            --glow-cyan: 0 0 20px rgba(0, 255, 255, 0.5);
-            --font-display: 'Orbitron', sans-serif;
-            --font-body: 'Space Mono', monospace;
-        }
-        
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        html { scroll-behavior: smooth; }
-        
-        body {
-            font-family: var(--font-body);
-            background: var(--bg-dark);
-            color: var(--text-primary);
-            line-height: 1.6;
-            overflow-x: hidden;
+        /* TT4Cast specific styles extending main theme */
+        .tt4cast-hero {
             min-height: 100vh;
-        }
-        
-        .stars {
-            position: fixed;
-            top: 0; left: 0;
-            width: 100%; height: 100%;
-            pointer-events: none;
-            z-index: -1;
-            background: 
-                radial-gradient(2px 2px at 20px 30px, #00ff88, transparent),
-                radial-gradient(2px 2px at 40px 70px, #ff00ff, transparent),
-                radial-gradient(1px 1px at 90px 40px, #00ffff, transparent),
-                radial-gradient(2px 2px at 160px 120px, #00ff88, transparent),
-                radial-gradient(1px 1px at 230px 80px, #ffffff, transparent),
-                radial-gradient(2px 2px at 300px 150px, #ff00ff, transparent),
-                radial-gradient(1px 1px at 350px 200px, #00ffff, transparent),
-                radial-gradient(2px 2px at 420px 50px, #00ff88, transparent);
-            background-repeat: repeat;
-            background-size: 600px 300px;
-            animation: twinkle 8s ease-in-out infinite;
-        }
-        
-        @keyframes twinkle { 0%, 100% { opacity: 0.8; } 50% { opacity: 0.4; } }
-        
-        .nav {
-            position: fixed;
-            top: 0; left: 0; right: 0;
-            z-index: 100;
-            padding: 1rem 2rem;
-            background: rgba(10, 10, 26, 0.9);
-            backdrop-filter: blur(10px);
-            border-bottom: 1px solid rgba(0, 255, 136, 0.2);
             display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        
-        .nav-logo {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            text-decoration: none;
-            font-family: var(--font-display);
-            font-size: 1.3rem;
-            font-weight: 700;
-        }
-        
-        .nav-logo-icon {
-            width: 40px; height: 40px;
-            background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
-            border-radius: 10px;
-            display: flex;
-            align-items: center;
+            flex-direction: column;
             justify-content: center;
-            font-size: 20px;
-            box-shadow: var(--glow-green);
-        }
-        
-        .nav-logo span {
-            color: var(--primary-color);
-            text-shadow: var(--glow-green);
-        }
-        
-        .nav-links {
-            display: flex;
-            gap: 2rem;
-            list-style: none;
-        }
-        
-        .nav-links a {
-            color: var(--text-secondary);
-            text-decoration: none;
-            font-size: 0.9rem;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            transition: all 0.3s ease;
-        }
-        
-        .nav-links a:hover {
-            color: var(--primary-color);
-            text-shadow: var(--glow-green);
-        }
-        
-        .nav-cta {
-            background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
-            color: var(--bg-dark);
-            padding: 10px 24px;
-            border-radius: 8px;
-            text-decoration: none;
-            font-weight: 700;
-            font-family: var(--font-display);
-            transition: all 0.3s;
-            box-shadow: var(--glow-green);
-        }
-        
-        .nav-cta:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 0 30px rgba(0, 255, 136, 0.6);
-        }
-        
-        .hero {
-            min-height: 100vh;
-            display: flex;
             align-items: center;
-            padding: 120px 24px 80px;
+            text-align: center;
+            padding: 6rem 2rem 2rem;
             position: relative;
         }
         
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: 0; left: 0; right: 0; bottom: 0;
-            background: 
-                radial-gradient(circle at 30% 20%, rgba(0, 255, 136, 0.1) 0%, transparent 50%),
-                radial-gradient(circle at 70% 80%, rgba(255, 0, 255, 0.08) 0%, transparent 50%);
-            pointer-events: none;
-        }
-        
-        .hero-content {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 60px;
-            align-items: center;
-            position: relative;
-            z-index: 1;
-        }
-        
-        .hero-text { max-width: 560px; }
-        
-        .hero-badge {
+        .tt4cast-badge {
             display: inline-flex;
             align-items: center;
             gap: 8px;
-            background: rgba(0, 255, 136, 0.15);
-            color: var(--primary-color);
-            padding: 8px 16px;
-            border-radius: 50px;
+            padding: 0.5rem 1.25rem;
+            background: rgba(0, 255, 136, 0.1);
+            border: 1px solid var(--primary-color);
+            border-radius: 25px;
             font-size: 0.85rem;
-            font-weight: 500;
-            margin-bottom: 24px;
-            border: 1px solid rgba(0, 255, 136, 0.3);
-            text-shadow: var(--glow-green);
+            color: var(--primary-color);
+            margin-bottom: 1.5rem;
+            animation: pulse-glow 2s ease-in-out infinite;
         }
         
-        .hero-title {
+        .tt4cast-title {
             font-family: var(--font-display);
-            font-size: 3.5rem;
+            font-size: 4.5rem;
             font-weight: 900;
-            line-height: 1.1;
-            margin-bottom: 20px;
-        }
-        
-        .hero-title .glow {
-            color: var(--primary-color);
-            text-shadow: var(--glow-green);
-        }
-        
-        .hero-title .glow-pink {
-            color: var(--secondary-color);
-            text-shadow: var(--glow-pink);
-        }
-        
-        .hero-description {
-            font-size: 1.1rem;
-            color: var(--text-secondary);
-            margin-bottom: 32px;
-            line-height: 1.8;
-        }
-        
-        .hero-buttons {
-            display: flex;
-            gap: 16px;
-            flex-wrap: wrap;
-        }
-        
-        .btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            padding: 16px 32px;
-            border-radius: 12px;
-            font-weight: 700;
-            font-size: 1rem;
-            font-family: var(--font-display);
-            text-decoration: none;
-            transition: all 0.3s;
-            cursor: pointer;
-            border: none;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-        
-        .btn-primary {
             background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
-            color: var(--bg-dark);
-            box-shadow: var(--glow-green);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 1rem;
+            position: relative;
         }
         
-        .btn-primary:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 0 40px rgba(0, 255, 136, 0.5);
-        }
-        
-        .btn-secondary {
-            background: var(--bg-card);
-            color: var(--text-primary);
-            border: 1px solid rgba(0, 255, 255, 0.3);
-        }
-        
-        .btn-secondary:hover {
-            background: rgba(0, 255, 255, 0.1);
-            border-color: var(--accent-color);
-            transform: translateY(-2px);
-        }
-        
-        .hero-stats {
-            display: flex;
-            gap: 40px;
-            margin-top: 48px;
-            padding-top: 32px;
-            border-top: 1px solid rgba(0, 255, 136, 0.2);
-        }
-        
-        .stat { text-align: center; }
-        
-        .stat-value {
-            font-family: var(--font-display);
-            font-size: 2rem;
-            font-weight: 700;
-            color: var(--primary-color);
-            text-shadow: var(--glow-green);
-        }
-        
-        .stat-label {
-            font-size: 0.85rem;
+        .tt4cast-tagline {
+            font-size: 1.5rem;
             color: var(--text-secondary);
-            text-transform: uppercase;
-            letter-spacing: 1px;
+            margin-bottom: 2rem;
+            max-width: 600px;
+        }
+        
+        .tt4cast-description {
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+            max-width: 700px;
+            line-height: 1.8;
+            margin-bottom: 2.5rem;
+        }
+        
+        .hero-showcase {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            width: 100%;
+        }
+        
+        .hero-text {
+            text-align: left;
         }
         
         .hero-mockup {
             display: flex;
             justify-content: center;
-            position: relative;
         }
         
-        .phone {
-            width: 280px;
-            height: 580px;
-            background: linear-gradient(145deg, #1a1a2e, #0f0f1a);
-            border-radius: 40px;
-            padding: 12px;
-            box-shadow: 0 50px 100px rgba(0, 0, 0, 0.5), inset 0 0 0 2px rgba(0, 255, 136, 0.2), 0 0 60px rgba(0, 255, 136, 0.1);
-            position: relative;
-        }
-        
-        .phone::before {
-            content: '';
-            position: absolute;
-            top: 20px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 80px;
-            height: 24px;
-            background: #0a0a1a;
-            border-radius: 20px;
-        }
-        
-        .phone-screen {
-            width: 100%; height: 100%;
-            background: linear-gradient(180deg, #0f0f2a 0%, #1a1a3e 100%);
-            border-radius: 32px;
-            overflow: hidden;
+        .cta-buttons {
             display: flex;
-            flex-direction: column;
+            gap: 1rem;
+            margin-top: 2rem;
         }
         
-        .phone-header {
-            padding: 50px 20px 20px;
-            text-align: center;
-        }
-        
-        .phone-header h3 {
-            font-family: var(--font-display);
-            font-size: 1rem;
-            color: var(--primary-color);
-            margin-bottom: 4px;
-        }
-        
-        .phone-header p {
-            font-size: 0.75rem;
-            color: var(--text-secondary);
-        }
-        
-        .phone-genres {
-            padding: 0 16px;
-            display: flex;
-            gap: 8px;
-            overflow-x: auto;
-        }
-        
-        .genre-chip {
-            background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
-            color: var(--bg-dark);
-            padding: 6px 14px;
-            border-radius: 20px;
-            font-size: 0.7rem;
-            font-weight: 700;
-            white-space: nowrap;
-        }
-        
-        .genre-chip:nth-child(2) { background: linear-gradient(135deg, var(--secondary-color), #ff6b6b); }
-        .genre-chip:nth-child(3) { background: linear-gradient(135deg, var(--accent-color), #6366f1); }
-        
-        .phone-podcasts {
-            flex: 1;
-            padding: 20px 16px;
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-        }
-        
-        .podcast-item {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            background: rgba(0, 255, 136, 0.05);
-            padding: 12px;
-            border-radius: 12px;
-            border: 1px solid rgba(0, 255, 136, 0.1);
-        }
-        
-        .podcast-art {
-            width: 45px; height: 45px;
-            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-            border-radius: 10px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 20px;
-        }
-        
-        .podcast-info h4 { font-size: 0.85rem; margin-bottom: 2px; }
-        .podcast-info p { font-size: 0.7rem; color: var(--text-secondary); }
-        
-        .phone-player {
-            background: rgba(0, 255, 136, 0.1);
-            padding: 16px;
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            border-top: 1px solid rgba(0, 255, 136, 0.2);
-        }
-        
-        .player-art {
-            width: 44px; height: 44px;
-            background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
-            border-radius: 8px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: var(--glow-green);
-        }
-        
-        .player-info { flex: 1; }
-        .player-info h5 { font-size: 0.8rem; margin-bottom: 2px; color: var(--primary-color); }
-        .player-info p { font-size: 0.65rem; color: var(--text-secondary); }
-        
-        .player-btn {
-            width: 40px; height: 40px;
-            background: var(--primary-color);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 16px;
-            box-shadow: var(--glow-green);
-        }
-        
-        .phone-nav {
-            display: flex;
-            justify-content: space-around;
-            padding: 12px;
-            background: rgba(0, 0, 0, 0.3);
-        }
-        
-        .phone-nav span { font-size: 18px; opacity: 0.4; }
-        .phone-nav span:first-child { opacity: 1; filter: drop-shadow(0 0 5px rgba(0, 255, 136, 0.5)); }
-        
-        .phone-glow {
-            position: absolute;
-            width: 400px; height: 400px;
-            background: radial-gradient(circle, rgba(0, 255, 136, 0.2) 0%, transparent 70%);
-            top: 50%; left: 50%;
-            transform: translate(-50%, -50%);
-            z-index: -1;
-            animation: pulse 4s ease-in-out infinite;
-        }
-        
-        @keyframes pulse {
-            0%, 100% { opacity: 0.5; transform: translate(-50%, -50%) scale(1); }
-            50% { opacity: 0.8; transform: translate(-50%, -50%) scale(1.1); }
-        }
-        
-        .features {
-            padding: 100px 24px;
-            position: relative;
-        }
-        
-        .section-header {
-            text-align: center;
-            max-width: 600px;
-            margin: 0 auto 60px;
-        }
-        
-        .section-header h2 {
-            font-family: var(--font-display);
-            font-size: 2.5rem;
-            font-weight: 700;
-            margin-bottom: 16px;
-        }
-        
-        .section-header p {
-            color: var(--text-secondary);
-            font-size: 1.1rem;
+        .features-section {
+            padding: 6rem 2rem;
         }
         
         .features-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
             max-width: 1200px;
             margin: 0 auto;
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 24px;
         }
         
         .feature-card {
             background: var(--bg-card);
+            padding: 2rem;
             border-radius: 20px;
-            padding: 32px;
-            border: 1px solid rgba(0, 255, 136, 0.1);
-            transition: all 0.3s;
+            border: 1px solid rgba(0, 255, 136, 0.2);
+            text-align: center;
+            transition: all 0.3s ease;
             position: relative;
             overflow: hidden;
         }
@@ -492,352 +131,519 @@
         .feature-card::before {
             content: '';
             position: absolute;
-            top: 0; left: 0; right: 0;
-            height: 2px;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
             background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
-            opacity: 0;
-            transition: opacity 0.3s;
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
         }
         
         .feature-card:hover {
-            transform: translateY(-5px);
-            border-color: rgba(0, 255, 136, 0.3);
-            box-shadow: 0 20px 40px rgba(0, 255, 136, 0.1);
+            transform: translateY(-10px);
+            border-color: var(--primary-color);
+            box-shadow: var(--glow-green);
         }
         
-        .feature-card:hover::before { opacity: 1; }
+        .feature-card:hover::before {
+            transform: scaleX(1);
+        }
         
         .feature-icon {
-            width: 60px; height: 60px;
-            background: linear-gradient(135deg, rgba(0, 255, 136, 0.2), rgba(0, 255, 255, 0.2));
-            border-radius: 16px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 28px;
-            margin-bottom: 20px;
-            border: 1px solid rgba(0, 255, 136, 0.3);
+            font-size: 3rem;
+            margin-bottom: 1rem;
         }
         
         .feature-card h3 {
             font-family: var(--font-display);
-            font-size: 1.2rem;
-            margin-bottom: 12px;
+            font-size: 1.1rem;
+            margin-bottom: 0.75rem;
             color: var(--primary-color);
         }
         
         .feature-card p {
             color: var(--text-secondary);
+            font-size: 0.9rem;
             line-height: 1.6;
         }
         
-        .cta {
-            padding: 100px 24px;
-            text-align: center;
-            background: linear-gradient(180deg, transparent 0%, rgba(0, 255, 136, 0.05) 50%, transparent 100%);
+        .stats-section {
+            padding: 4rem 2rem;
+            background: linear-gradient(180deg, transparent 0%, rgba(255, 0, 255, 0.02) 50%, transparent 100%);
         }
         
-        .cta-content { max-width: 600px; margin: 0 auto; }
-        
-        .cta h2 {
-            font-family: var(--font-display);
-            font-size: 2.5rem;
-            font-weight: 700;
-            margin-bottom: 16px;
-        }
-        
-        .cta p {
-            font-size: 1.1rem;
-            color: var(--text-secondary);
-            margin-bottom: 32px;
-        }
-        
-        .store-badges {
+        .stats-grid {
             display: flex;
             justify-content: center;
-            gap: 16px;
+            gap: 4rem;
             flex-wrap: wrap;
         }
         
-        .store-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 12px;
-            background: var(--bg-card);
-            padding: 16px 28px;
-            border-radius: 16px;
-            color: white;
-            text-decoration: none;
-            border: 1px solid rgba(0, 255, 136, 0.3);
-            transition: all 0.3s;
+        .stat-item {
+            text-align: center;
         }
         
-        .store-badge:hover {
-            background: rgba(0, 255, 136, 0.1);
-            transform: translateY(-3px);
-            box-shadow: var(--glow-green);
-        }
-        
-        .store-badge span:first-child { font-size: 32px; }
-        .store-badge-text { text-align: left; }
-        .store-badge-text small { font-size: 0.7rem; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 1px; }
-        .store-badge-text strong { display: block; font-family: var(--font-display); font-size: 1.1rem; color: var(--primary-color); }
-        
-        .footer {
-            padding: 60px 24px 40px;
-            border-top: 1px solid rgba(0, 255, 136, 0.2);
-        }
-        
-        .footer-content {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-            flex-wrap: wrap;
-            gap: 40px;
-        }
-        
-        .footer-brand { max-width: 300px; }
-        
-        .footer-brand h3 {
-            display: flex;
-            align-items: center;
-            gap: 10px;
+        .stat-number {
             font-family: var(--font-display);
-            font-size: 1.3rem;
-            margin-bottom: 12px;
+            font-size: 3rem;
+            font-weight: 900;
             color: var(--primary-color);
             text-shadow: var(--glow-green);
         }
         
-        .footer-brand p { color: var(--text-secondary); font-size: 0.9rem; }
-        
-        .footer-links { display: flex; gap: 60px; }
-        
-        .footer-links-column h4 {
-            font-family: var(--font-display);
+        .stat-label {
+            color: var(--text-secondary);
             font-size: 0.9rem;
-            margin-bottom: 16px;
-            color: var(--accent-color);
-            text-transform: uppercase;
-            letter-spacing: 2px;
+            margin-top: 0.5rem;
         }
         
-        .footer-links-column ul { list-style: none; }
-        .footer-links-column li { margin-bottom: 10px; }
-        .footer-links-column a { color: var(--text-secondary); text-decoration: none; font-size: 0.9rem; transition: color 0.2s; }
-        .footer-links-column a:hover { color: var(--primary-color); text-shadow: var(--glow-green); }
+        .download-section {
+            padding: 6rem 2rem;
+            text-align: center;
+        }
         
-        .footer-bottom {
-            max-width: 1200px;
-            margin: 40px auto 0;
-            padding-top: 24px;
-            border-top: 1px solid rgba(0, 255, 136, 0.1);
+        .download-content {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .download-title {
+            font-family: var(--font-display);
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .download-text {
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+        }
+        
+        .store-buttons {
             display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 16px;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
         }
         
-        .footer-bottom p { color: var(--text-secondary); font-size: 0.85rem; }
-        .footer-bottom a { color: var(--primary-color); text-decoration: none; }
+        .store-btn {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 1rem 2rem;
+            background: var(--bg-card);
+            border: 1px solid rgba(0, 255, 136, 0.3);
+            border-radius: 12px;
+            color: var(--text-primary);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
         
+        .store-btn:hover {
+            border-color: var(--primary-color);
+            box-shadow: var(--glow-green);
+            transform: translateY(-3px);
+        }
+        
+        .store-btn .store-icon {
+            font-size: 2rem;
+        }
+        
+        .store-btn .store-text {
+            text-align: left;
+        }
+        
+        .store-btn .store-text span {
+            display: block;
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+        }
+        
+        .store-btn .store-text strong {
+            font-size: 1rem;
+        }
+        
+        .legal-links {
+            margin-top: 2rem;
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+        }
+        
+        .legal-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.3s ease;
+        }
+        
+        .legal-links a:hover {
+            color: var(--primary-color);
+        }
+        
+        /* Page footer */
+        .tt4cast-footer {
+            padding: 3rem 2rem;
+            background: var(--bg-darker);
+            border-top: 1px solid rgba(0, 255, 136, 0.2);
+            text-align: center;
+        }
+        
+        .tt4cast-footer .footer-logo {
+            font-family: var(--font-display);
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+        }
+        
+        .tt4cast-footer .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 1rem;
+        }
+        
+        .tt4cast-footer .footer-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .tt4cast-footer .footer-links a:hover {
+            color: var(--primary-color);
+        }
+        
+        .tt4cast-footer .copyright {
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+        }
+        
+        /* Responsive */
         @media (max-width: 1024px) {
-            .hero-content { grid-template-columns: 1fr; text-align: center; }
-            .hero-text { max-width: 100%; }
-            .hero-buttons, .hero-stats { justify-content: center; }
-            .features-grid { grid-template-columns: repeat(2, 1fr); }
+            .features-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
         }
         
         @media (max-width: 768px) {
-            .nav-links { display: none; }
-            .hero { padding: 100px 20px 60px; }
-            .hero-title { font-size: 2.2rem; }
-            .features-grid { grid-template-columns: 1fr; }
-            .phone { width: 240px; height: 500px; }
-            .footer-content { flex-direction: column; text-align: center; }
-            .footer-links { flex-direction: column; gap: 30px; }
-            .footer-bottom { flex-direction: column; text-align: center; }
-        }
-        
-        @media (max-width: 480px) {
-            .hero-title { font-size: 1.8rem; }
-            .hero-stats { flex-direction: column; gap: 20px; }
-            .btn { width: 100%; justify-content: center; }
-            .section-header h2 { font-size: 1.8rem; }
+            .hero-showcase {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+            
+            .hero-text {
+                text-align: center;
+                order: 2;
+            }
+            
+            .hero-mockup {
+                order: 1;
+            }
+            
+            .tt4cast-title {
+                font-size: 2.5rem;
+            }
+            
+            .tt4cast-tagline {
+                font-size: 1.1rem;
+            }
+            
+            .cta-buttons {
+                flex-direction: column;
+                width: 100%;
+            }
+            
+            .cta-buttons .btn {
+                width: 100%;
+                justify-content: center;
+            }
+            
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .stats-grid {
+                gap: 2rem;
+            }
+            
+            .stat-number {
+                font-size: 2rem;
+            }
+            
+            .phone-frame {
+                transform: scale(0.85);
+            }
+            
+            .store-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .legal-links {
+                flex-direction: column;
+                gap: 1rem;
+            }
         }
     </style>
 </head>
 <body>
-    <div class="stars"></div>
+    <!-- Alien Background Canvas -->
+    <canvas id="alienCanvas"></canvas>
     
-    <nav class="nav">
-        <a href="/tt4cast/" class="nav-logo">
-            <div class="nav-logo-icon">🎧</div>
-            <span>TT4Cast</span>
-        </a>
-        <ul class="nav-links">
-            <li><a href="#features">Features</a></li>
-            <li><a href="privacy">Privacy</a></li>
-            <li><a href="/">Home</a></li>
+    <!-- Floating Particles -->
+    <div id="particles"></div>
+    
+    <!-- Navigation -->
+    <nav class="nav-alien">
+        <div class="nav-logo">
+            <a href="/" style="text-decoration: none;">
+                <span class="glow-text">👽 TT</span>
+            </a>
+        </div>
+        <button class="nav-toggle" id="navToggle">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+        <ul class="nav-links" id="navLinks">
+            <li><a href="/" class="nav-link">Home</a></li>
+            <li><a href="/#about" class="nav-link">About</a></li>
+            <li><a href="/#projects" class="nav-link">Projects</a></li>
+            <li><a href="/tt4cast/" class="nav-link active">TT4Cast</a></li>
+            <li><a href="/#contact" class="nav-link">Contact</a></li>
         </ul>
-        <a href="#download" class="nav-cta">Download</a>
     </nav>
-    
-    <section class="hero">
-        <div class="hero-content">
+
+    <!-- Hero Section -->
+    <section class="tt4cast-hero">
+        <div class="hero-showcase">
             <div class="hero-text">
-                <div class="hero-badge">🚀 Now Available on Google Play</div>
-                <h1 class="hero-title">
-                    Your Free<br>
-                    <span class="glow">Podcast</span> <span class="glow-pink">Player</span>
-                </h1>
-                <p class="hero-description">
+                <span class="tt4cast-badge">
+                    <span>🚀</span> Available Now on Android
+                </span>
+                <h1 class="tt4cast-title">TT4Cast</h1>
+                <p class="tt4cast-tagline">Your Free Podcast Universe</p>
+                <p class="tt4cast-description">
                     Discover, stream, and enjoy millions of podcasts from around the world. 
-                    No account needed, no subscriptions, completely free.
+                    No account needed, no subscriptions, completely free. Built with passion for podcast lovers by Thomas Tin Tin.
                 </p>
-                <div class="hero-buttons">
-                    <a href="#download" class="btn btn-primary">📥 Download Now</a>
-                    <a href="#features" class="btn btn-secondary">✨ See Features</a>
-                </div>
-                <div class="hero-stats">
-                    <div class="stat"><div class="stat-value">18+</div><div class="stat-label">Genres</div></div>
-                    <div class="stat"><div class="stat-value">1M+</div><div class="stat-label">Podcasts</div></div>
-                    <div class="stat"><div class="stat-value">Free</div><div class="stat-label">Forever</div></div>
+                <div class="cta-buttons">
+                    <a href="#download" class="btn btn-primary">
+                        <span>📥 Download Now</span>
+                    </a>
+                    <a href="#features" class="btn btn-secondary">
+                        <span>✨ Explore Features</span>
+                    </a>
                 </div>
             </div>
             <div class="hero-mockup">
-                <div class="phone-glow"></div>
-                <div class="phone">
-                    <div class="phone-screen">
-                        <div class="phone-header">
-                            <h3>🎧 TT4Cast</h3>
-                            <p>Explore & listen to podcasts</p>
-                        </div>
-                        <div class="phone-genres">
-                            <span class="genre-chip">Comedy</span>
-                            <span class="genre-chip">True Crime</span>
-                            <span class="genre-chip">Tech</span>
-                        </div>
-                        <div class="phone-podcasts">
-                            <div class="podcast-item">
-                                <div class="podcast-art">🎙️</div>
-                                <div class="podcast-info"><h4>Daily Tech News</h4><p>Technology • 45 episodes</p></div>
+                <!-- Phone Mockup from main site -->
+                <div class="app-mockup">
+                    <div class="phone-frame">
+                        <div class="phone-notch"></div>
+                        <div class="phone-screen">
+                            <div class="app-header-ui">
+                                <span class="app-time">9:41</span>
+                                <div class="app-status-icons">
+                                    <span>📶</span>
+                                    <span>🔋</span>
+                                </div>
                             </div>
-                            <div class="podcast-item">
-                                <div class="podcast-art">😂</div>
-                                <div class="podcast-info"><h4>Comedy Hour</h4><p>Comedy • 120 episodes</p></div>
+                            <div class="app-content-ui">
+                                <div class="app-album-art">
+                                    <div class="album-vinyl" style="background: linear-gradient(135deg, #6366f1, #f97316);">
+                                        <div class="vinyl-center">🎧</div>
+                                    </div>
+                                </div>
+                                <div class="app-track-info">
+                                    <h4>Daily Tech News</h4>
+                                    <p>Episode 45 • Technology</p>
+                                </div>
+                                <div class="app-progress-ui">
+                                    <div class="app-progress-bar">
+                                        <div class="app-progress-fill"></div>
+                                    </div>
+                                    <div class="app-time-stamps">
+                                        <span>12:34</span>
+                                        <span>45:00</span>
+                                    </div>
+                                </div>
+                                <div class="app-controls-ui">
+                                    <button class="app-ctrl-btn">⏪</button>
+                                    <button class="app-ctrl-btn">⏮️</button>
+                                    <button class="app-ctrl-btn app-play-btn">▶️</button>
+                                    <button class="app-ctrl-btn">⏭️</button>
+                                    <button class="app-ctrl-btn">⏩</button>
+                                </div>
+                                <div class="app-bottom-nav">
+                                    <button class="nav-item active">🏠</button>
+                                    <button class="nav-item">🔍</button>
+                                    <button class="nav-item">📚</button>
+                                    <button class="nav-item">⚙️</button>
+                                </div>
                             </div>
-                            <div class="podcast-item">
-                                <div class="podcast-art">🔍</div>
-                                <div class="podcast-info"><h4>True Crime Stories</h4><p>True Crime • 89 episodes</p></div>
-                            </div>
-                        </div>
-                        <div class="phone-player">
-                            <div class="player-art">🎧</div>
-                            <div class="player-info"><h5>Episode 45: AI Revolution</h5><p>Daily Tech News</p></div>
-                            <div class="player-btn">▶️</div>
-                        </div>
-                        <div class="phone-nav">
-                            <span>🏠</span><span>🔍</span><span>📚</span><span>⚙️</span>
                         </div>
                     </div>
+                    <div class="phone-glow"></div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="scroll-indicator">
+            <div class="mouse">
+                <div class="wheel"></div>
+            </div>
+            <span>Scroll to explore</span>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="features-section section">
+        <div class="container">
+            <h2 class="section-title">
+                <span class="alien-icon">🛸</span>
+                Cosmic Features
+            </h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">🎯</div>
+                    <h3>18+ Genres</h3>
+                    <p>Comedy, True Crime, Technology, News, Sports, Music, Business & many more categories to explore.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🔍</div>
+                    <h3>Powerful Search</h3>
+                    <p>Search through millions of podcasts using iTunes & Podcast Index databases combined.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🎵</div>
+                    <h3>Background Play</h3>
+                    <p>Keep listening while using other apps. Seamless playback experience.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">⏩</div>
+                    <h3>Playback Controls</h3>
+                    <p>Skip forward/back, adjust playback speed, and control from notifications.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📚</div>
+                    <h3>Follow Podcasts</h3>
+                    <p>Build your personal library. Follow your favorites and never miss an episode.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📝</div>
+                    <h3>Track History</h3>
+                    <p>Your listening history saved locally. Resume right where you left off.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🔒</div>
+                    <h3>Privacy First</h3>
+                    <p>No account required. No personal data collected. Your privacy matters.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🆓</div>
+                    <h3>100% Free</h3>
+                    <p>No subscriptions, no ads, no in-app purchases. Completely free forever.</p>
                 </div>
             </div>
         </div>
     </section>
-    
-    <section id="features" class="features">
-        <div class="section-header">
-            <h2>👾 Cosmic Features</h2>
-            <p>A beautifully designed podcast app with all the features you need.</p>
-        </div>
-        <div class="features-grid">
-            <div class="feature-card">
-                <div class="feature-icon">🎯</div>
-                <h3>Browse by Genre</h3>
-                <p>Explore 18+ genres including Comedy, True Crime, News, Technology, Business, Sports, and more.</p>
+
+    <!-- Stats Section -->
+    <section class="stats-section">
+        <div class="stats-grid">
+            <div class="stat-item">
+                <div class="stat-number">4M+</div>
+                <div class="stat-label">Podcasts Available</div>
             </div>
-            <div class="feature-card">
-                <div class="feature-icon">🔍</div>
-                <h3>Powerful Search</h3>
-                <p>Search through millions of podcasts from iTunes and Podcast Index databases instantly.</p>
+            <div class="stat-item">
+                <div class="stat-number">18+</div>
+                <div class="stat-label">Genre Categories</div>
             </div>
-            <div class="feature-card">
-                <div class="feature-icon">🎵</div>
-                <h3>Background Playback</h3>
-                <p>Keep listening while using other apps. Your podcast continues playing in the background.</p>
+            <div class="stat-item">
+                <div class="stat-number">2</div>
+                <div class="stat-label">Search Databases</div>
             </div>
-            <div class="feature-card">
-                <div class="feature-icon">📚</div>
-                <h3>Your Library</h3>
-                <p>Follow your favorite podcasts and track your listening history. All saved locally.</p>
-            </div>
-            <div class="feature-card">
-                <div class="feature-icon">⏰</div>
-                <h3>Playback Controls</h3>
-                <p>Full controls including play/pause, seek bar, rewind 10 seconds, and forward 30 seconds.</p>
-            </div>
-            <div class="feature-card">
-                <div class="feature-icon">🔒</div>
-                <h3>Privacy Focused</h3>
-                <p>No account required. No data collection. All your preferences stay on your device.</p>
+            <div class="stat-item">
+                <div class="stat-number">0</div>
+                <div class="stat-label">Data Collected</div>
             </div>
         </div>
     </section>
-    
-    <section id="download" class="cta">
-        <div class="cta-content">
-            <h2>🚀 Start Listening Today</h2>
-            <p>Download TT4Cast for free and discover your next favorite podcast.</p>
-            <div class="store-badges">
-                <a href="#" class="store-badge">
-                    <span>🤖</span>
-                    <div class="store-badge-text">
-                        <small>Get it on</small>
+
+    <!-- Download Section -->
+    <section id="download" class="download-section section">
+        <div class="download-content">
+            <h2 class="section-title">
+                <span class="alien-icon">📱</span>
+                Get TT4Cast
+            </h2>
+            <p class="download-text">
+                Start your podcast journey today. Free, private, and packed with features.
+            </p>
+            <div class="store-buttons">
+                <a href="#" class="store-btn">
+                    <span class="store-icon">🤖</span>
+                    <div class="store-text">
+                        <span>Get it on</span>
                         <strong>Google Play</strong>
                     </div>
                 </a>
             </div>
+            <div class="legal-links">
+                <a href="/tt4cast/privacy">📜 Privacy Policy</a>
+                <a href="/tt4cast/terms">📋 Terms of Service</a>
+            </div>
         </div>
     </section>
-    
-    <footer class="footer">
-        <div class="footer-content">
-            <div class="footer-brand">
-                <h3>🎧 TT4Cast</h3>
-                <p>Your free podcast discovery and streaming app. Built with ❤️ by Thomas Tin Tin.</p>
+
+    <!-- Footer -->
+    <footer class="tt4cast-footer">
+        <div class="container">
+            <div class="footer-logo">
+                <span class="glow-text">🎧 TT4Cast</span>
             </div>
             <div class="footer-links">
-                <div class="footer-links-column">
-                    <h4>App</h4>
-                    <ul>
-                        <li><a href="#features">Features</a></li>
-                        <li><a href="#download">Download</a></li>
-                    </ul>
-                </div>
-                <div class="footer-links-column">
-                    <h4>Legal</h4>
-                    <ul>
-                        <li><a href="privacy">Privacy Policy</a></li>
-                        <li><a href="terms">Terms of Service</a></li>
-                    </ul>
-                </div>
-                <div class="footer-links-column">
-                    <h4>Contact</h4>
-                    <ul>
-                        <li><a href="mailto:contact@thomastintin.me">Email Support</a></li>
-                        <li><a href="/">Developer Website</a></li>
-                    </ul>
-                </div>
+                <a href="/">Home</a>
+                <a href="/tt4cast/privacy">Privacy</a>
+                <a href="/tt4cast/terms">Terms</a>
+                <a href="/#contact">Contact</a>
             </div>
-        </div>
-        <div class="footer-bottom">
-            <p>© 2026 TT4Cast. All rights reserved across all galaxies.</p>
-            <p>Made by <a href="/">Thomas Tin Tin</a> 👽</p>
+            <p class="copyright">© 2026 Thomas Tin Tin. All rights reserved across all galaxies. 👽</p>
         </div>
     </footer>
+
+    <!-- Scripts from main site -->
+    <script src="/js/animations.js"></script>
+    <script>
+        // Mobile nav toggle
+        const navToggle = document.getElementById('navToggle');
+        const navLinks = document.getElementById('navLinks');
+        
+        if (navToggle && navLinks) {
+            navToggle.addEventListener('click', () => {
+                navToggle.classList.toggle('active');
+                navLinks.classList.toggle('active');
+            });
+        }
+        
+        // Close nav when clicking a link
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', () => {
+                navToggle?.classList.remove('active');
+                navLinks?.classList.remove('active');
+            });
+        });
+        
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+    </script>
 </body>
 </html>

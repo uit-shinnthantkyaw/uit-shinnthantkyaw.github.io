@@ -2,78 +2,172 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Privacy Policy for TT4Cast - Free Podcast Discovery & Streaming App">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="description" content="Privacy Policy for TT4Cast - Free Podcast Discovery & Streaming App. Learn how we protect your privacy.">
     <meta name="author" content="Thomas Tin Tin">
     <meta name="theme-color" content="#00ff88">
     
+    <link rel="canonical" href="https://thomastintin.me/tt4cast/privacy">
+    
     <title>Privacy Policy | TT4Cast</title>
+    <link rel="stylesheet" href="/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+    
     <style>
-        :root {
-            --primary-color: #00ff88;
-            --secondary-color: #ff00ff;
-            --accent-color: #00ffff;
-            --bg-dark: #0a0a1a;
-            --bg-card: rgba(20, 20, 40, 0.8);
-            --text-primary: #ffffff;
-            --text-secondary: #a0a0c0;
-            --glow-green: 0 0 20px rgba(0, 255, 136, 0.5);
-            --font-display: 'Orbitron', sans-serif;
-            --font-body: 'Space Mono', monospace;
-        }
-        
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        
-        body {
-            font-family: var(--font-body);
-            background: var(--bg-dark);
-            color: var(--text-primary);
-            line-height: 1.7;
-            min-height: 100vh;
-        }
-        
-        .stars {
-            position: fixed;
-            top: 0; left: 0;
-            width: 100%; height: 100%;
-            pointer-events: none;
-            z-index: -1;
-            background: 
-                radial-gradient(2px 2px at 20px 30px, #00ff88, transparent),
-                radial-gradient(2px 2px at 40px 70px, #ff00ff, transparent),
-                radial-gradient(1px 1px at 90px 40px, #00ffff, transparent),
-                radial-gradient(2px 2px at 160px 120px, #00ff88, transparent),
-                radial-gradient(1px 1px at 230px 80px, #ffffff, transparent),
-                radial-gradient(2px 2px at 300px 150px, #ff00ff, transparent);
-            background-repeat: repeat;
-            background-size: 600px 300px;
-            animation: twinkle 8s ease-in-out infinite;
-        }
-        
-        @keyframes twinkle { 0%, 100% { opacity: 0.8; } 50% { opacity: 0.4; } }
-        
-        .header {
-            background: linear-gradient(135deg, rgba(0, 255, 136, 0.2) 0%, rgba(255, 0, 255, 0.1) 100%);
-            padding: 80px 20px 60px;
+        /* TT4Cast Legal Pages Styles */
+        .legal-hero {
+            padding: 8rem 2rem 4rem;
             text-align: center;
-            border-bottom: 1px solid rgba(0, 255, 136, 0.2);
             position: relative;
         }
         
-        .header::before {
+        .legal-hero::after {
             content: '';
             position: absolute;
-            top: 0; left: 0; right: 0; bottom: 0;
-            background: radial-gradient(circle at 50% 50%, rgba(0, 255, 136, 0.1) 0%, transparent 70%);
-            pointer-events: none;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--primary-color), transparent);
         }
         
-        .header-content {
+        .legal-icon {
+            font-size: 4rem;
+            margin-bottom: 1.5rem;
+            display: block;
+        }
+        
+        .legal-title {
+            font-family: var(--font-display);
+            font-size: 3rem;
+            font-weight: 900;
+            background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 1rem;
+        }
+        
+        .legal-subtitle {
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+        }
+        
+        .legal-content {
             max-width: 800px;
             margin: 0 auto;
+            padding: 3rem 2rem;
+        }
+        
+        .policy-section {
+            background: var(--bg-card);
+            border-radius: 20px;
+            padding: 2rem;
+            margin-bottom: 1.5rem;
+            border: 1px solid rgba(0, 255, 136, 0.15);
+            transition: all 0.3s ease;
             position: relative;
-            z-index: 1;
+            overflow: hidden;
+        }
+        
+        .policy-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: linear-gradient(180deg, var(--primary-color), var(--accent-color));
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .policy-section:hover {
+            border-color: rgba(0, 255, 136, 0.3);
+            transform: translateX(5px);
+        }
+        
+        .policy-section:hover::before {
+            opacity: 1;
+        }
+        
+        .policy-section h2 {
+            font-family: var(--font-display);
+            color: var(--primary-color);
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .policy-section p {
+            color: var(--text-secondary);
+            margin-bottom: 1rem;
+            line-height: 1.8;
+        }
+        
+        .policy-section p:last-child {
+            margin-bottom: 0;
+        }
+        
+        .policy-section ul {
+            color: var(--text-secondary);
+            margin-left: 1.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .policy-section li {
+            margin-bottom: 0.5rem;
+            line-height: 1.7;
+        }
+        
+        .policy-section strong {
+            color: var(--text-primary);
+        }
+        
+        .highlight-box {
+            background: rgba(0, 255, 136, 0.08);
+            border-left: 4px solid var(--primary-color);
+            padding: 1rem 1.25rem;
+            border-radius: 0 12px 12px 0;
+            margin: 1rem 0;
+        }
+        
+        .highlight-box p {
+            color: var(--text-primary);
+            margin: 0;
+        }
+        
+        .contact-box {
+            background: rgba(255, 0, 255, 0.08);
+            border: 1px solid rgba(255, 0, 255, 0.2);
+            border-radius: 12px;
+            padding: 1.25rem;
+            margin-top: 1rem;
+        }
+        
+        .contact-box p {
+            margin-bottom: 0.5rem;
+        }
+        
+        .contact-box a {
+            color: var(--primary-color);
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+        
+        .contact-box a:hover {
+            text-shadow: var(--glow-green);
+        }
+        
+        .last-updated {
+            text-align: center;
+            color: var(--text-secondary);
+            padding: 1.5rem;
+            font-size: 0.9rem;
+            border-top: 1px solid rgba(0, 255, 136, 0.1);
+            margin-top: 2rem;
         }
         
         .back-link {
@@ -82,7 +176,7 @@
             gap: 8px;
             color: var(--primary-color);
             text-decoration: none;
-            margin-bottom: 24px;
+            margin-bottom: 1rem;
             font-size: 0.9rem;
             transition: all 0.3s;
         }
@@ -91,292 +185,245 @@
             text-shadow: var(--glow-green);
         }
         
-        .app-icon {
-            width: 80px;
-            height: 80px;
-            background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
-            border-radius: 20px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 40px;
-            margin: 0 auto 24px;
-            box-shadow: var(--glow-green), 0 20px 40px rgba(0, 0, 0, 0.3);
-        }
-        
-        .header h1 {
-            font-family: var(--font-display);
-            font-size: 2.5rem;
-            font-weight: 700;
-            margin-bottom: 12px;
-            color: var(--primary-color);
-            text-shadow: var(--glow-green);
-        }
-        
-        .header p {
-            font-size: 1rem;
-            color: var(--text-secondary);
-        }
-        
-        .container {
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 40px 20px;
-        }
-        
-        .policy-card {
-            background: var(--bg-card);
-            border-radius: 20px;
-            padding: 32px;
-            margin-bottom: 24px;
-            border: 1px solid rgba(0, 255, 136, 0.1);
-            transition: all 0.3s;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .policy-card::before {
-            content: '';
-            position: absolute;
-            top: 0; left: 0; right: 0;
-            height: 2px;
-            background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
-            opacity: 0;
-            transition: opacity 0.3s;
-        }
-        
-        .policy-card:hover {
-            border-color: rgba(0, 255, 136, 0.3);
-        }
-        
-        .policy-card:hover::before {
-            opacity: 1;
-        }
-        
-        .policy-card h2 {
-            font-family: var(--font-display);
-            color: var(--primary-color);
-            font-size: 1.2rem;
-            margin-bottom: 16px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-        
-        .policy-card p {
-            color: var(--text-secondary);
-            margin-bottom: 12px;
-        }
-        
-        .policy-card p:last-child {
-            margin-bottom: 0;
-        }
-        
-        .policy-card ul {
-            color: var(--text-secondary);
-            margin-left: 20px;
-            margin-bottom: 12px;
-        }
-        
-        .policy-card li {
-            margin-bottom: 8px;
-        }
-        
-        .policy-card strong {
-            color: var(--text-primary);
-        }
-        
-        .highlight-box {
-            background: rgba(0, 255, 136, 0.1);
-            border-left: 4px solid var(--primary-color);
-            padding: 16px 20px;
-            border-radius: 0 12px 12px 0;
-            margin: 16px 0;
-        }
-        
-        .highlight-box p {
-            color: var(--text-primary);
-            margin: 0;
-        }
-        
-        .last-updated {
-            text-align: center;
-            color: var(--text-secondary);
-            padding: 20px;
-            font-size: 0.9rem;
-        }
-        
-        .contact-info {
-            background: rgba(0, 255, 255, 0.1);
-            border-radius: 12px;
-            padding: 20px;
-            margin-top: 20px;
-            border: 1px solid rgba(0, 255, 255, 0.2);
-        }
-        
-        .contact-info p {
-            margin-bottom: 8px;
-        }
-        
-        .contact-info a {
-            color: var(--primary-color);
-            text-decoration: none;
-        }
-        
-        .contact-info a:hover {
-            text-shadow: var(--glow-green);
-        }
-        
-        .footer {
-            text-align: center;
-            padding: 40px 20px;
+        /* Footer */
+        .legal-footer {
+            padding: 3rem 2rem;
+            background: var(--bg-darker);
             border-top: 1px solid rgba(0, 255, 136, 0.2);
+            text-align: center;
+        }
+        
+        .legal-footer .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+        }
+        
+        .legal-footer .footer-links a {
             color: var(--text-secondary);
-        }
-        
-        .footer a {
-            color: var(--primary-color);
             text-decoration: none;
-            margin: 0 10px;
+            transition: color 0.3s ease;
         }
         
-        .footer a:hover {
-            text-shadow: var(--glow-green);
+        .legal-footer .footer-links a:hover {
+            color: var(--primary-color);
         }
         
-        @media (max-width: 600px) {
-            .header { padding: 60px 20px 40px; }
-            .header h1 { font-size: 1.8rem; }
-            .policy-card { padding: 24px; }
-            .policy-card h2 { font-size: 1rem; }
+        .legal-footer .copyright {
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+        }
+        
+        @media (max-width: 768px) {
+            .legal-hero {
+                padding: 6rem 1.5rem 3rem;
+            }
+            
+            .legal-title {
+                font-size: 2rem;
+            }
+            
+            .legal-icon {
+                font-size: 3rem;
+            }
+            
+            .policy-section {
+                padding: 1.5rem;
+            }
+            
+            .policy-section h2 {
+                font-size: 1rem;
+            }
+            
+            .legal-footer .footer-links {
+                gap: 1rem;
+            }
         }
     </style>
 </head>
 <body>
-    <div class="stars"></div>
+    <!-- Alien Background Canvas -->
+    <canvas id="alienCanvas"></canvas>
     
-    <header class="header">
-        <div class="header-content">
-            <a href="/tt4cast/" class="back-link">← Back to TT4Cast</a>
-            <div class="app-icon">🎧</div>
-            <h1>Privacy Policy</h1>
-            <p>TT4Cast - Free Podcast Discovery & Streaming</p>
+    <!-- Floating Particles -->
+    <div id="particles"></div>
+    
+    <!-- Navigation -->
+    <nav class="nav-alien">
+        <div class="nav-logo">
+            <a href="/" style="text-decoration: none;">
+                <span class="glow-text">👽 TT</span>
+            </a>
         </div>
+        <button class="nav-toggle" id="navToggle">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+        <ul class="nav-links" id="navLinks">
+            <li><a href="/" class="nav-link">Home</a></li>
+            <li><a href="/#about" class="nav-link">About</a></li>
+            <li><a href="/#projects" class="nav-link">Projects</a></li>
+            <li><a href="/tt4cast/" class="nav-link active">TT4Cast</a></li>
+            <li><a href="/#contact" class="nav-link">Contact</a></li>
+        </ul>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="legal-hero">
+        <a href="/tt4cast/" class="back-link">← Back to TT4Cast</a>
+        <span class="legal-icon">🔒</span>
+        <h1 class="legal-title">Privacy Policy</h1>
+        <p class="legal-subtitle">TT4Cast - Free Podcast Discovery & Streaming</p>
     </header>
-    
-    <main class="container">
-        <div class="policy-card">
-            <h2>📋 1. Introduction</h2>
-            <p>Welcome to TT4Cast ("we," "our," or "us"). We are committed to protecting your privacy and ensuring you have a positive experience on our app.</p>
-            <p>This Privacy Policy explains how TT4Cast collects, uses, and protects your information when you use our podcast discovery and streaming application.</p>
+
+    <!-- Content -->
+    <main class="legal-content">
+        <div class="policy-section">
+            <h2>👋 1. Introduction</h2>
+            <p>Welcome to TT4Cast ("we," "our," or "us"). We are committed to protecting your privacy. This Privacy Policy explains how our podcast streaming application handles information when you use our app.</p>
+            <div class="highlight-box">
+                <p>🎯 <strong>TL;DR:</strong> TT4Cast is designed with privacy first. We don't collect personal data, don't require accounts, and store everything locally on your device.</p>
+            </div>
         </div>
-        
-        <div class="policy-card">
+
+        <div class="policy-section">
             <h2>📊 2. Information We Collect</h2>
-            <p>TT4Cast is designed with privacy in mind. We collect minimal data to provide our services:</p>
+            <p><strong>We do NOT collect:</strong></p>
             <ul>
-                <li><strong>Podcast Preferences:</strong> Your followed podcasts and listening history are stored locally on your device only</li>
-                <li><strong>Search Queries:</strong> When you search for podcasts, your queries are sent to Apple's iTunes Search API and Podcast Index API</li>
-                <li><strong>Device Information:</strong> Basic device information may be collected for crash reporting and app improvement</li>
+                <li>Personal identification information (name, email, phone number)</li>
+                <li>Location data</li>
+                <li>Device identifiers for tracking purposes</li>
+                <li>Usage analytics or behavioral data</li>
+                <li>Any data that could identify you personally</li>
             </ul>
-            <div class="highlight-box">
-                <p>🔒 <strong>Important:</strong> TT4Cast does NOT require account creation. All personal data stays on your device.</p>
-            </div>
-        </div>
-        
-        <div class="policy-card">
-            <h2>🎯 3. How We Use Your Information</h2>
-            <p>We use the collected information to:</p>
+            <p><strong>Local Storage Only:</strong></p>
             <ul>
-                <li>Display your followed podcasts in your library</li>
-                <li>Show your recently played episodes</li>
-                <li>Search for podcasts based on your queries</li>
-                <li>Improve app performance and fix bugs</li>
+                <li>Your podcast follows (stored only on your device)</li>
+                <li>Listening history (stored only on your device)</li>
+                <li>App preferences and settings (stored only on your device)</li>
             </ul>
         </div>
-        
-        <div class="policy-card">
-            <h2>💾 4. Data Storage</h2>
-            <p>All your personal data including:</p>
+
+        <div class="policy-section">
+            <h2>💾 3. How Your Data is Stored</h2>
+            <p>All user data (followed podcasts, listening history, preferences) is stored <strong>locally on your device only</strong>. We do not have servers that store your personal information.</p>
+            <p>This means:</p>
             <ul>
-                <li>Followed podcasts</li>
-                <li>Listening history</li>
-                <li>App preferences</li>
-            </ul>
-            <p>...is stored <strong>locally on your device only</strong>. We do not collect, transmit, or store any personal data on our servers.</p>
-            <div class="highlight-box">
-                <p>🗑️ Uninstalling the app will permanently delete all locally stored data.</p>
-            </div>
-        </div>
-        
-        <div class="policy-card">
-            <h2>🔗 5. Third-Party Services</h2>
-            <p>TT4Cast uses the following third-party services to provide podcast content:</p>
-            <ul>
-                <li><strong>iTunes Search API (Apple):</strong> To search and discover podcasts. Apple's privacy policy applies to data sent to their services.</li>
-                <li><strong>Podcast Index API:</strong> To provide additional podcast content. Podcast Index's privacy policy applies.</li>
-                <li><strong>Google Play Services:</strong> For app distribution and crash reporting. Google's privacy policy applies.</li>
-            </ul>
-            <p>We do not sell or share your data with any other third parties.</p>
-        </div>
-        
-        <div class="policy-card">
-            <h2>🛡️ 6. Data Security</h2>
-            <p>Your data is protected using Android's standard security mechanisms:</p>
-            <ul>
-                <li>Local data is stored in app-private storage</li>
-                <li>All network communications use HTTPS encryption</li>
-                <li>No sensitive data is transmitted to external servers</li>
+                <li>Your data stays on your device</li>
+                <li>Uninstalling the app removes all local data</li>
+                <li>We cannot access or recover your data</li>
+                <li>Your listening habits remain private</li>
             </ul>
         </div>
-        
-        <div class="policy-card">
-            <h2>✅ 7. Your Rights</h2>
-            <p>You have full control over your data:</p>
+
+        <div class="policy-section">
+            <h2>🌐 4. Third-Party Services</h2>
+            <p>TT4Cast uses the following third-party APIs to provide podcast content:</p>
             <ul>
-                <li><strong>Clear History:</strong> Clear your listening history anytime from Settings</li>
-                <li><strong>Unfollow:</strong> Remove followed podcasts at any time</li>
-                <li><strong>Delete All:</strong> Uninstall the app to remove all locally stored data</li>
-                <li><strong>No Account:</strong> Since no account is required, there's no account data to manage</li>
+                <li><strong>iTunes Search API</strong> (Apple) - For searching and discovering podcasts</li>
+                <li><strong>Podcast Index API</strong> - For additional podcast database access</li>
+            </ul>
+            <p>These services have their own privacy policies. When you search for or stream podcasts, these services may receive:</p>
+            <ul>
+                <li>Search queries you enter</li>
+                <li>Your IP address (standard for any internet request)</li>
+            </ul>
+            <p>We recommend reviewing their privacy policies:</p>
+            <ul>
+                <li>Apple Privacy Policy: <a href="https://www.apple.com/privacy/" target="_blank" rel="noopener">apple.com/privacy</a></li>
+                <li>Podcast Index: <a href="https://podcastindex.org/" target="_blank" rel="noopener">podcastindex.org</a></li>
             </ul>
         </div>
-        
-        <div class="policy-card">
-            <h2>👶 8. Children's Privacy</h2>
-            <p>TT4Cast is a general audience application. We do not knowingly collect personal information from children under 13 years of age.</p>
-            <p>If you believe we have inadvertently collected such information, please contact us immediately and we will take steps to delete it.</p>
-        </div>
-        
-        <div class="policy-card">
-            <h2>🔄 9. Changes to This Policy</h2>
-            <p>We may update this Privacy Policy from time to time to reflect changes in our practices or for legal compliance.</p>
-            <p>We will notify you of any material changes by:</p>
+
+        <div class="policy-section">
+            <h2>📱 5. Permissions</h2>
+            <p>TT4Cast requests the following Android permissions:</p>
             <ul>
-                <li>Updating the "Last updated" date at the top of this policy</li>
-                <li>Providing notice through the app when applicable</li>
+                <li><strong>INTERNET</strong> - Required to stream podcasts and search for content</li>
+                <li><strong>FOREGROUND_SERVICE</strong> - Required for background audio playback</li>
+                <li><strong>WAKE_LOCK</strong> - Keeps the device awake during audio playback</li>
+            </ul>
+            <p>We do not request permissions for contacts, camera, microphone, location, or storage beyond what's necessary for the app to function.</p>
+        </div>
+
+        <div class="policy-section">
+            <h2>👶 6. Children's Privacy</h2>
+            <p>TT4Cast is a general-audience app and does not knowingly collect any personal information from anyone, including children under 13. Since we don't collect personal data, there is no children's data to protect.</p>
+        </div>
+
+        <div class="policy-section">
+            <h2>🔐 7. Data Security</h2>
+            <p>Since we don't collect or transmit personal data to our servers, the security of your information depends on your device's security. We recommend:</p>
+            <ul>
+                <li>Keeping your device software updated</li>
+                <li>Using device lock features (PIN, fingerprint, etc.)</li>
+                <li>Only downloading apps from official sources (Google Play)</li>
             </ul>
         </div>
-        
-        <div class="policy-card">
+
+        <div class="policy-section">
+            <h2>⚖️ 8. Your Rights</h2>
+            <p>Since we don't collect personal data, traditional data rights (access, deletion, portability) are handled differently:</p>
+            <ul>
+                <li><strong>Access:</strong> All your data is already on your device</li>
+                <li><strong>Deletion:</strong> Uninstall the app to remove all local data, or clear app data in device settings</li>
+                <li><strong>Portability:</strong> Data is stored locally and isn't transferred</li>
+            </ul>
+        </div>
+
+        <div class="policy-section">
+            <h2>📝 9. Changes to This Policy</h2>
+            <p>We may update this Privacy Policy from time to time. Any changes will be reflected with a new "Last Updated" date at the bottom of this page. Continued use of the app after changes constitutes acceptance of the updated policy.</p>
+        </div>
+
+        <div class="policy-section">
             <h2>📧 10. Contact Us</h2>
-            <p>If you have any questions, concerns, or requests regarding this Privacy Policy or your data, please contact us:</p>
-            <div class="contact-info">
+            <p>If you have questions or concerns about this Privacy Policy, please contact us:</p>
+            <div class="contact-box">
                 <p><strong>Email:</strong> contact@thomastintin.me</p>
                 <p><strong>Website:</strong> <a href="https://thomastintin.me">thomastintin.me</a></p>
                 <p><strong>Developer:</strong> Thomas Tin Tin</p>
             </div>
         </div>
-        
+
         <p class="last-updated">Last updated: January 24, 2026</p>
     </main>
-    
-    <footer class="footer">
-        <p>© 2026 TT4Cast. All rights reserved across all galaxies. 👽</p>
-        <p style="margin-top: 10px;">
-            <a href="/tt4cast/">App Home</a>
+
+    <!-- Footer -->
+    <footer class="legal-footer">
+        <div class="footer-links">
+            <a href="/tt4cast/">TT4Cast Home</a>
             <a href="/tt4cast/terms">Terms of Service</a>
             <a href="/">thomastintin.me</a>
-        </p>
+            <a href="/#contact">Contact</a>
+        </div>
+        <p class="copyright">© 2026 Thomas Tin Tin. All rights reserved across all galaxies. 👽</p>
     </footer>
+
+    <!-- Scripts -->
+    <script src="/js/animations.js"></script>
+    <script>
+        // Mobile nav toggle
+        const navToggle = document.getElementById('navToggle');
+        const navLinks = document.getElementById('navLinks');
+        
+        if (navToggle && navLinks) {
+            navToggle.addEventListener('click', () => {
+                navToggle.classList.toggle('active');
+                navLinks.classList.toggle('active');
+            });
+        }
+        
+        // Close nav when clicking a link
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', () => {
+                navToggle?.classList.remove('active');
+                navLinks?.classList.remove('active');
+            });
+        });
+    </script>
 </body>
 </html>
